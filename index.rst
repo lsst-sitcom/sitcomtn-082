@@ -79,7 +79,7 @@ Figure 1 shows that measured forces on the hardpoint 1 - 6 during the hardpoint 
  
 .. figure:: /_static/m1m3004_hp_timeline_El_90.png
    
-   Figure 1. Transition of the measured forces on each hardpoint when the TMA is at el=90deg. 
+   Transition of the measured forces on each hardpoint when the TMA is at el=90deg. 
 
 
 In Figure 2, there are the change of the measured force for each phase/status in the hardpoint breakaway test, Moving Negative, Testing Positive, and Testing Negative, respectively. 
@@ -89,7 +89,7 @@ The slopes of the all stiffness are shallower than the values expected for speci
 .. figure:: /_static/Force_displacement_salidx_100061_El_90.png
    :scale: 45 %
 
-   Figure 2. :math:`\Delta`\Displacement versus Measured Forces for each phase during the hardpoint breakaway test 
+   :math:`\Delta`\Displacement versus Measured Forces for each phase during the hardpoint breakaway test 
 
 
 In order to check residual bumps during the movements of hardpoints, we adopted the error function :eq:`error_function` to fit the measured forces with respect to :math:`\Delta`\displacement for active phases (when hardpoints are moving toward negative and positive directions).  
@@ -104,7 +104,7 @@ The maxima of the bumps are about < 250\N, which correspond < 10\% of applied fo
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100061_El_90.png
    
-   Figure 3. (Left) Same as Figure2, but fit with error function. (Right) Residual, the difference between data and fit, with respect to :math:`\Delta`\displacement 
+   (Left) Same as Figure2, but fit with error function. (Right) Residual, the difference between data and fit, with respect to :math:`\Delta`\displacement 
 
 
 
@@ -119,19 +119,19 @@ In Figure 4, hardpoint 2 and hardpoint 5 were not contracted and the duration ti
 
 .. figure:: /_static/m1m3004_hp_timeline_El_0.png
    
-   Figure 4.  Same as Figure 1 but the TMA at el=0 deg. 
+   Same as Figure 1 but the TMA at el=0 deg. 
 
 The stiffness of each curves are fitted from :math:`\Delta`\displacement = 0 :math:`{\mu}m` (Figure 5). 
 
 .. figure:: /_static/Force_displacement_salidx_100056_El_0.png
    :scale: 45 %
 
-   Figure 5. Same as Figure 2 but the TMA at el=0 deg. 
+   Same as Figure 2 but the TMA at el=0 deg. 
 
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100056_El_0.png
    
-   Figure 6.  Same as Figure 3 but the TMA at el=0 deg.   
+   Same as Figure 3 but the TMA at el=0 deg.   
 
 
 Hard Point Breakaway Test at el=40
@@ -139,16 +139,16 @@ Hard Point Breakaway Test at el=40
 
 .. figure:: /_static/m1m3004_hp_timeline_El_40.png
    
-   Figure 7.  Same as Figure 1 but the TMA at el=40 deg. 
+   Same as Figure 1 but the TMA at el=40 deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100034_El_40.png
    :scale: 45 %
 
-   Figure 8. Same as Figure 2 but the TMA at el=40 deg. 
+   Same as Figure 2 but the TMA at el=40 deg. 
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100034_El_40.png
    
-   Figure 9.  Same as Figure 3 but the TMA at el=40 deg.   
+   Same as Figure 3 but the TMA at el=40 deg.   
 
 
 Hard Point Breakaway Test at el=20
@@ -156,28 +156,28 @@ Hard Point Breakaway Test at el=20
 
 .. figure:: /_static/m1m3004_hp_timeline_El_20.png
    
-   Figure 10.  Same as Figure 1 but the TMA at el=20 deg. 
+   Same as Figure 1 but the TMA at el=20 deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100036_El_20.png
    :scale: 45 %
 
-   Figure 11. Same as Figure 2 but the TMA at el=20 deg. 
+   Same as Figure 2 but the TMA at el=20 deg. 
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100036_El_20.png
    
-   Figure 12.  Same as Figure 3 but the TMA at el=20 deg.   
+   Same as Figure 3 but the TMA at el=20 deg.   
 
 Hard Point Breakaway Test at el=10
 ===================================
 
 .. figure:: /_static/m1m3004_hp_timeline_El_10.png
    
-   Figure 13. Same as Figure 1 but the TMA at el=10 deg. 
+   Same as Figure 1 but the TMA at el=10 deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100059_El_10.png
    :scale: 45 %
 
-   Figure 14. Same as Figure 2 but the TMA at el=10 deg. 
+   Same as Figure 2 but the TMA at el=10 deg. 
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100059_El_10.png
    
@@ -188,16 +188,16 @@ Hard Point Breakaway Test at el=5
 
 .. figure:: /_static/m1m3004_hp_timeline_El_5.png
    
-   Figure 16. Same as Figure 1 but the TMA at el=5 deg. 
+   Same as Figure 1 but the TMA at el=5 deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100058_El_5.png
    :scale: 45 %
 
-   Figure 17. Same as Figure 2 but the TMA at el=5 deg. 
+   Same as Figure 2 but the TMA at el=5 deg. 
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100058_El_5.png
    
-   Figure 18. Same as Figure 3 but the TMA at el=5 deg.   
+   Same as Figure 3 but the TMA at el=5 deg.   
 
 
 Hard Point Breakaway Test at el=1
@@ -205,16 +205,16 @@ Hard Point Breakaway Test at el=1
 
 .. figure:: /_static/m1m3004_hp_timeline_El_1.png
    
-   Figure 13. Same as Figure 1 but the TMA at el=1 deg. 
+   Same as Figure 1 but the TMA at el=1 deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100057_El_1.png
    :scale: 45 %
 
-   Figure 14. Same as Figure 2 but the TMA at el=10 deg. 
+   Same as Figure 2 but the TMA at el=10 deg. 
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100057_El_1.png
    
-   Figure 15. Same as Figure 3 but the TMA at el=1 deg.   
+   Same as Figure 3 but the TMA at el=1 deg.   
 
 
 .. rubric:: References
