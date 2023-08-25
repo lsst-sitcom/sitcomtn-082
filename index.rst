@@ -154,7 +154,8 @@ This is because depending on the position of each hard point.
 
 
 .. figure:: /_static/m1m3004_hp_timeline_El_0.png
-   Figure 4. Transition of the measured forces on each hard point when the TMA is at el=0deg. 
+   
+    Figure 4. Transition of the measured forces on each hard point when the TMA is at el=0deg. 
 
 The stiffness of each curves are fitted from :math:`\Delta`\displacement = 0 :math:`{\mu}m` (Figure 5). 
 
