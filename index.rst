@@ -110,7 +110,7 @@ Measured forces on all hard points look working properly because breakaway happe
  
 .. figure:: /_static/m1m3004_hp_timeline_El_90.png
    
-   Figure 1. Transition of the measured forces on each hard point when the TMA is at el=90deg. 
+   Transition of the measured forces on each hard point when the TMA is at el=90deg. 
 
 
 In Figure 2, there are the change of the measured force for each phase/status in the hard point breakaway test, moving Negative, testing positive, and testing negative, respectively. 
@@ -120,7 +120,7 @@ All stiffness slopes are shallower than specification (100N/:math:`{\mu}m`).
 .. figure:: /_static/Force_displacement_salidx_100061_El_90.png
    :scale: 45 %
 
-   Figure 2. :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=90deg. 
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=90deg. 
 
 In order to check residual bumps during the movements of hard points, we adopted the error function :eq:`error_function` to fit the measured forces with respect to :math:`\Delta`\displacement for active phases when the hard points are moving toward negative and positive directions.  
 As hard points breakaway limits for each direction are different, the functions at the positive and negative in x axes were fitted separately.    
@@ -134,7 +134,7 @@ The maxima of the bumps are about < 250\N, which correspond < 10\% of the measur
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100061_El_90.png
    
-   Figure 3. (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=90deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=90deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
 
 
 
@@ -162,12 +162,12 @@ The stiffness of each curves are fitted from :math:`\Delta`\displacement = 0 :ma
 .. figure:: /_static/Force_displacement_salidx_100056_El_0.png
    :scale: 45 %
 
-   Figure 5. :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=0 deg.  
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=0 deg.  
 
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100056_El_0.png
    
-   Figure 6. (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=0deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=0deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
 
 
 HP Test at el 40 deg
@@ -175,16 +175,16 @@ HP Test at el 40 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_40.png
    
-   Figure 7. Transition of the measured forces on each hard point when the TMA is at el=40deg. 
+   Transition of the measured forces on each hard point when the TMA is at el=40deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100034_El_40.png
    :scale: 45 %
 
-   Figure 8. :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=40 deg.  
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=40 deg.  
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100034_El_40.png
    
-   Figure 9. (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=40deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=40deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
 
 
 HP Test at el 20 deg
@@ -192,16 +192,16 @@ HP Test at el 20 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_20.png
    
-   Figure 10. Transition of the measured forces on each hard point when the TMA is at el=20deg. 
+   Transition of the measured forces on each hard point when the TMA is at el=20deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100036_El_20.png
    :scale: 45 %
 
-   Figure 11. :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=20 deg.  
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=20 deg.  
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100036_El_20.png
    
-   Figure 12. (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=20deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=20deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
 
 
 HP Test at el 10 deg
@@ -209,16 +209,16 @@ HP Test at el 10 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_10.png
    
-   Figure 13. Transition of the measured forces on each hard point when the TMA is at el=10deg. 
+   Transition of the measured forces on each hard point when the TMA is at el=10deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100059_El_10.png
    :scale: 45 %
 
-   Figure 14. :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=10 deg.  
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=10 deg.  
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100059_El_10.png
    
-   Figure 15. (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=10deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=10deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
 
 
 HP Test at el 5 deg
@@ -226,16 +226,16 @@ HP Test at el 5 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_5.png
    
-   Figure 16. Transition of the measured forces on each hard point when the TMA is at el=5deg. 
+   Transition of the measured forces on each hard point when the TMA is at el=5deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100058_El_5.png
    :scale: 45 %
 
-   Figure 17. :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=5 deg.  
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=5 deg.  
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100058_El_5.png
    
-   Figure 18. (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=5deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=5deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
 
 
 HP Test at el 1 deg
@@ -243,16 +243,16 @@ HP Test at el 1 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_1.png
    
-   Figure 19. Transition of the measured forces on each hard point when the TMA is at el=1deg. 
+   Transition of the measured forces on each hard point when the TMA is at el=1deg. 
 
 .. figure:: /_static/Force_displacement_salidx_100057_El_1.png
    :scale: 45 %
 
-   Figure 20. :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=1 deg.  
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test when the TMA is at el=1 deg.  
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100057_El_1.png
    
-   Figure 21. (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=1deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hard point breakaway test fit with error function (the TMA at el=1deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement 
 
 
 .. rubric:: References
