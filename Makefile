@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS    = -W --keep-going -n
-SPHINXBUILD   = sphinx-build
+SPHINXBUILD   = /Users/hdrass22/anaconda3/envs/docsteady-dev/bin/sphinx-build
 PAPER         =
 BUILDDIR      = _build
 

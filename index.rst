@@ -1,5 +1,6 @@
 :tocdepth: 1
 
+
 .. sectnum::
 
 .. Metadata such as the title, authors, and description are set in metadata.yaml
@@ -25,11 +26,11 @@ The following steps are performed during an individual hardpoint breakaway test 
 
 As a summary:
 
-1. Move hardpoint in negative (increasing tension) direction until the breakway mechanism activates.
+1. Move hardpoint in negative (increasing tension) direction until the breakaway mechanism activates.
 
-2. Move hardpoint in positive (increasing compression) direction until the breakway mechanism activates.
+2. Move hardpoint in positive (increasing compression) direction until the breakaway mechanism activates.
 
-3. Move hardpoint downwards (increasing tension) until the breakway mechanism activates.
+3. Move hardpoint downwards (increasing tension) until the breakaway mechanism activates.
 
 4. Move hardpoint back to its reference position.
 
@@ -49,7 +50,7 @@ Associated JIRA tickets and requirements with this test:
 
 
 
-List of Hardpoint Breakwaway Test
+List of Hardpoint Breakaway Test
 =================================
 
 .. _table-label:
@@ -94,7 +95,7 @@ A general results of HP Test
 
 
 HP Test at EL = 90deg
---------------------
+---------------------
 
 These are results from hardpoint breakaway tests when the TMA is positioned at EL=90 deg, AZ=-29.69 deg.
 Figure 1 shows that measured forces on the hardpoint 1 - 6 during the hardpoint axial breakaway test.
