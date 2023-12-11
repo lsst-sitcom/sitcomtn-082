@@ -1,9 +1,10 @@
-# Makefile for Sphinx documentation
+#
+Makefile for Sphinx documentation
 #
 
 # You can set these variables from the command line.
 SPHINXOPTS    = -W --keep-going -n
-SPHINXBUILD   = /Users/hdrass22/anaconda3/envs/docsteady-dev/bin/sphinx-build
+SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build
 
