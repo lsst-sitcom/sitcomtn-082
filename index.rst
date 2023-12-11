@@ -94,7 +94,7 @@ A general results of HP Test
 
 
 HP Test at EL = 90deg
---------------------
+---------------------
 
 These are results from hardpoint breakaway tests when the TMA is positioned at EL=90 deg, AZ=-29.69 deg.
 Figure 1 shows that measured forces on the hardpoint 1 - 6 during the hardpoint axial breakaway test.
