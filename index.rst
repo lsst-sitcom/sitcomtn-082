@@ -273,5 +273,5 @@ Requirements discussion
 
 .. rubric:: References
 
-.. bibliography:: local.bib lsstbib/books.bib lsstbib/lsst.bib lsstbib/lsst-dm.bib lsstbib/refs.bib lsstbib/refs_ads.bib
+.. bibliography:: local.bib 
    :style: lsst_aa
