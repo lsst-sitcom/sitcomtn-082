@@ -144,13 +144,12 @@ HP Test at el 0 deg
 --------------------
 
 
-These are results from hardpoint breakaway test when the TMA was positioned at el=0 deg, az=-29.69 deg.
-In Figure 4, hardpoint 2 and hardpoint 5 were not moving to the positive direction.
-Hardpoint 1 and hardpoint 6 were both staying on the position for testing positive for a shorter period of time whereas hardpoint 3 and hardpoint 4 were staying on testing negative position for a shorter period time.
+These are the results from the hardpoint breakaway test when the TMA was positioned at el=0 deg, az=-29.69 deg.
+In Figure 4, hardpoint 2 and hardpoint 5 were not moving in the positive direction.
+Hardpoint 1 and hardpoint 6 both stayed in the position for testing positive for a shorter time whereas hardpoint 3 and hardpoint 4 were staying on testing negative position for a shorter period time.
 This is because depending on the position of each hardpoint.
 
-.. todo::
-    - Reference cross check
+ToDo Reference cross-check
 
 
 
@@ -260,8 +259,8 @@ Summary and Conclusions
 
 General Results of HP Test
 --------------------------
-.. todo::
-   - General results from HP test
+
+ToDo: General results from HP test
 
 
 Requirements discussion
