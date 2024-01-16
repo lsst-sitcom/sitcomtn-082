@@ -16,7 +16,7 @@ With all the steps guarded with reasonable timeouts, so problems are detected if
 **If this test shows that the hardpoints do not work properly at the limits, this could be one of the blockers for the installation of M1M3 until it is solved.**
 
 Hardpoint Breakaway Test Overview
-========================
+=================================
 
 The active support system of the M1M3 includes six axial hardpoint actuators in a hexapod configuration. :cite:`2018SPIE10700E..3GD`
 
@@ -99,7 +99,7 @@ List of Hardpoint Breakaway Test
 
 
 Hardpoint Tests and Results
-======================
+===========================
 
 HP Test at EL = 90deg
 ---------------------
@@ -259,13 +259,13 @@ Summary and Conclusions
 =======================
 
 General Results of HP Test
-----------------------------
+--------------------------
 .. todo::
    - General results from HP test
 
 
 Requirements discussion
----------------------
+-----------------------
 
 
 
