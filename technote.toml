@@ -12,10 +12,10 @@ organization.ror = "https://ror.org/048g3cy84"
 state = "draft"
 
 [[technote.authors]]
-name.given = "Yijung"
-name.family = "kang"
-orcid = ""
-internal_id = "kangy"
+name.given = "Holger"
+name.family = "Drass"
+orcid = "https://orcid.org/0000-0002-7790-9971"
+internal_id = "drassh"
 [[technote.authors.affiliations]]
 name = "Rubin Observatory Project Office"
 internal_id = "RubinObs"
