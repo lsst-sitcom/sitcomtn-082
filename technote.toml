@@ -13,9 +13,9 @@ state = "draft"
 
 [[technote.authors]]
 name.given = "Yijung"
-name.family = "Kang"
+name.family = "kang"
 orcid = ""
-internal_id = "Kangy"
+internal_id = "kangy"
 [[technote.authors.affiliations]]
 name = "Rubin Observatory Project Office"
 internal_id = "RubinObs"
