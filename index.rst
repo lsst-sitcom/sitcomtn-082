@@ -11,24 +11,32 @@ Abstract
 ========
 
 This technote describes the analysis and results derived from individual hardpoint breakaway tests conducted with the M1M3 surrogate.
-The notebook is located within `notebooks_vandv <https://github.com/lsst-sitcom/notebooks_vandv/blob/tickets/SITCOM-838/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOM-838_Anaysis.ipynb>`_ GitHub repository.
-With all the steps guarded with reasonable timeouts, so problems are detected if hardpoint cannot travel to reach low or high limit switches, etc.
-**If this test shows that the hardpoints do not work properly at the limits, this could be one of the blockers for the installation of M1M3 until it is solved.**
+
+The notebook is located in the `notebooks_vandv <https://github.com/lsst-sitcom/notebooks_vandv/blob/tickets/SITCOM-838/notebooks/tel_and_site/subsys_req_ver/m1m3/SITCOM-838_Anaysis.ipynb>`_ GitHub repository.
+
+With all steps guarded by reasonable timeouts, problems are detected if a hardpoint cannot reach the lower or upper limit switch.
+
+**CAVE: If these tests show that a hardpoint does not work as expected please report to SITCom or Systems Engineering management.**
 
 Hardpoint Breakaway Test Overview
 =================================
 
 The active support system of the M1M3 includes six axial hardpoint actuators in a hexapod configuration. :cite:`2018SPIE10700E..3GD`
 
-These hardpoint actuators should minimize forces during slews at any TMA position and be kept under the breakaway limit.
+The forces on the hardpoint actuators should be minimized during slews for all TMA Az and El positions.
+
+There are two force limits to protect the mirror at all times.
+The fatigue limit considers stress on the glass over many movement repetitions and the breakaway limit considers one-time stress.
+Here the M1M3 support system behaviour at the breakaway limit and for related requirements is analysed.
+
 The breakaway limit for each hardpoint is in the range of -4420N to -3456N for retraction and 2981N to 3959N for extension.
 The following steps are performed during an individual hardpoint breakaway test are shown in test case `LVV-T231 <https://jira.lsstcorp.org/secure/Tests.jspa#/testCase/LVV-T231>`_.
 
-As a summary:
+As a test step summary:
 
-1. Move hardpoint in negative (increasing tension) direction until the breakaway mechanism activates.
+1. Move hardpoint in the negative (increasing tension) direction until the breakaway mechanism activates.
 
-2. Move hardpoint in positive (increasing compression) direction until the breakaway mechanism activates.
+2. Move hardpoint in the positive (increasing compression) direction until the breakaway mechanism activates.
 
 3. Move hardpoint downwards (increasing tension) until the breakaway mechanism activates.
 
@@ -53,16 +61,7 @@ Requirements in verification:
     - `LVV-11184 <https://jira.lsstcorp.org/browse/LVV-11184>`_ LTS-88-REQ-0024-V-01: 3.7.1.7 Hardpoint Axial Breakaway Repeatability_1
     - `LVV-11208 <https://jira.lsstcorp.org/browse/LVV-11208>`_ LTS-88-REQ-0025-V-01: 3.7.1.8 Hardpoint Stiffness Limits_1
     - `LVV-11188 <https://jira.lsstcorp.org/browse/LVV-11188>`_ LTS-88-REQ-0019-V-01: 3.7.1.5.2 Load Limiting Axial Breakaway Mechanism Limits_1
-
-Covered
-Verification LVV-11190
-LTS-88-REQ-0020-V-01: 3.7.1.5.3 Load Limiting Axial Breakaway Mechanism Limits_1
-Covered
-Verification LVV-11186
-LTS-88-REQ-0021-V-01: 3.7.1.5.4 Breakaway Limit Exceeded_1
-Covered
-Verification LVV-11185
-LTS-88-REQ-0017-V-01: 3.7.1.5 Hardpoint Breakaway Force Limits_1
+    - `LVV-11190 <https://jira.lsstcorp.org/browse/LVV-11190>`_ LTS-88-REQ-0020-V-01: 3.7.1.5.3 Load Limiting Axial Breakaway Mechanism Limits_1 
 
 
 List of Hardpoint Breakaway Test
@@ -106,26 +105,25 @@ HP Test at EL = 90deg
 **Test description**
 These are results from hardpoint breakaway tests with the TMA positioned at EL=90 deg, AZ=-29.69 deg.
 Figure 1 shows the measured forces on the hardpoint 1 - 6 during the hardpoint breakaway test.
-**Test Result and Interpretation**
-Measured forces on all hardpoints look working properly because breakaway happened in the required range. (tension: -4420 - -3456N, compression: 2981 - 3959N).
+
 
 .. figure:: /_static/m1m3004_hp_timeline_El_90.png
 
    Transition of the measured forces on each hardpoint when the TMA is at El=90deg.
 
 
-In Figure 2, there are the change of the measured force for each phase/status in the hardpoint breakaway test, moving Negative, testing positive, and testing negative, respectively.
+In Figure 2, there is a change in the measured force for each phase/status in the hardpoint breakaway test while moving negative, positive, and negative, respectively.
 The stiffness of each curve is fitted with +-10 points from :math:`\Delta`\displacement = 0 :math:`{\mu}m`.
-All stiffness slopes are shallower than specification (100N/:math:`{\mu}m`).
+All stiffness slopes are shallower than allowed by the specification (100N/:math:`{\mu}m`).
 
 .. figure:: /_static/Force_displacement_salidx_100061_El_90.png
    :scale: 45 %
 
    :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=90deg.
 
-In order to check residual bumps during the movements of hardpoints, we adopted the error function :eq:`error_function` to fit the measured forces with respect to :math:`\Delta`\displacement for active phases when the hardpoints are moving toward negative and positive directions.
-As hardpoints breakaway limits for each direction are different, the functions at the positive and negative in x axes were fitted separately.
-The maxima of the bumps are about < 250\N, which correspond < 10\% of the measured forces.
+In order to check residual bumps during the hardpoint's movements, we adopted the error function :eq:`error_function` to fit the measured forces with respect to :math:`\Delta`\displacement for active phases when the hardpoints are moving toward negative and positive directions.
+As hardpoints breakaway limits for each direction are different, the functions at the positive and negative in X-axes were fitted separately.
+The maxima of the bumps are less than 250\N, which corresponds to less than 10\% of the measured forces.
 
 
 .. math:: erf(x) = {\frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-t^2}\,dt}
@@ -143,31 +141,29 @@ The maxima of the bumps are about < 250\N, which correspond < 10\% of the measur
 HP Test at el 0 deg
 --------------------
 
-
+**Test description**
 These are the results from the hardpoint breakaway test when the TMA was positioned at el=0 deg, az=-29.69 deg.
 In Figure 4, hardpoint 2 and hardpoint 5 were not moving in the positive direction.
-Hardpoint 1 and hardpoint 6 both stayed in the position for testing positive for a shorter time whereas hardpoint 3 and hardpoint 4 were staying on testing negative position for a shorter period time.
-This is because depending on the position of each hardpoint.
 
-ToDo Reference cross-check
-
+Hardpoint 1 and hardpoint 6 both stayed in the position for testing positive for a shorter time whereas hardpoint 3 and hardpoint 4 stayed in testing negative position for a shorter time.
+The movement and resting behaviour of the hardpoint is depending on the position of each hardpoint.
 
 
 .. figure:: /_static/m1m3004_hp_timeline_El_0.png
 
-    Figure 4. Transition of the measured forces on each hardpoint when the TMA is at el=0deg.
+    Figure 4. Measured forces on each hardpoint when the TMA is at El=0deg.
 
-The stiffness of each curves are fitted from :math:`\Delta`\displacement = 0 :math:`{\mu}m` (Figure 5).
+The stiffness of each curve is fitted from :math:`\Delta`\displacement = 0 :math:`{\mu}m` (Figure 5).
 
 .. figure:: /_static/Force_displacement_salidx_100056_El_0.png
    :scale: 45 %
 
-   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=0 deg.
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at El=0 deg.
 
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100056_El_0.png
 
-   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=0deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at El=0deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
 
 
 HP Test at el 40 deg
@@ -175,12 +171,12 @@ HP Test at el 40 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_40.png
 
-   Transition of the measured forces on each hardpoint when the TMA is at el=40deg.
+   Transition of the measured forces on each hardpoint when the TMA is at El=40deg.
 
 .. figure:: /_static/Force_displacement_salidx_100034_El_40.png
    :scale: 45 %
 
-   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=40 deg.
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at El=40 deg.
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100034_El_40.png
 
@@ -192,16 +188,16 @@ HP Test at el 20 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_20.png
 
-   Transition of the measured forces on each hardpoint when the TMA is at el=20deg.
+   Transition of the measured forces on each hardpoint when the TMA is at El=20deg.
 
 .. figure:: /_static/Force_displacement_salidx_100036_El_20.png
    :scale: 45 %
 
-   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=20 deg.
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at El=20 deg.
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100036_El_20.png
 
-   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=20deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at El=20deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
 
 
 HP Test at el 10 deg
@@ -209,16 +205,16 @@ HP Test at el 10 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_10.png
 
-   Transition of the measured forces on each hardpoint when the TMA is at el=10deg.
+   Transition of the measured forces on each hardpoint when the TMA is at El=10deg.
 
 .. figure:: /_static/Force_displacement_salidx_100059_El_10.png
    :scale: 45 %
 
-   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=10 deg.
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at El=10 deg.
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100059_El_10.png
 
-   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=10deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at El=10deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
 
 
 HP Test at el 5 deg
@@ -226,16 +222,16 @@ HP Test at el 5 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_5.png
 
-   Transition of the measured forces on each hardpoint when the TMA is at el=5deg.
+   Transition of the measured forces on each hardpoint when the TMA is at El=5deg.
 
 .. figure:: /_static/Force_displacement_salidx_100058_El_5.png
    :scale: 45 %
 
-   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=5 deg.
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at El=5 deg.
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100058_El_5.png
 
-   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=5deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at El=5deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
 
 
 HP Test at el 1 deg
@@ -243,29 +239,29 @@ HP Test at el 1 deg
 
 .. figure:: /_static/m1m3004_hp_timeline_El_1.png
 
-   Transition of the measured forces on each hardpoint when the TMA is at el=1deg.
+   Transition of the measured forces on each hardpoint when the TMA is at El=1deg.
 
 .. figure:: /_static/Force_displacement_salidx_100057_El_1.png
    :scale: 45 %
 
-   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=1 deg.
+   :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at El=1 deg.
 
 .. figure:: /_static/Force_displacement_fitting_residual_salidx_100057_El_1.png
 
-   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=1deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
+   (Left) :math:`\Delta`\Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at El=1deg). (Right) The residual, a difference between data and error function, with respect to :math:`\Delta`\displacement
 
 Summary and Conclusions
 =======================
 
-General Results of HP Test
---------------------------
+Results of HP Test
+-------------------
 
-ToDo: General results from HP test
+**Test Result and Interpretation**
 
+The breakaway happens in the required range (tension: -4420 - -3456N, compression: 2981 - 3959N) for all hardpoints at all elevations this verifies the requirements 
 
-Requirements discussion
------------------------
-
+- `LVV-11188 <https://jira.lsstcorp.org/browse/LVV-11188>`_ LTS-88-REQ-0019-V-01: 3.7.1.5.2 Load Limiting Axial Breakaway Mechanism Limits_1
+- `LVV-11190 <https://jira.lsstcorp.org/browse/LVV-11190>`_ LTS-88-REQ-0020-V-01: 3.7.1.5.3 Load Limiting Axial Breakaway Mechanism Limits_1 
 
 
 
