@@ -81,12 +81,12 @@ Associated JIRA tickets and requirements with this test:
 
 ### A general results of HP Test
 
-```{eval-rst}
-.. todo::
+:::{note}
+**todo:**
    - General results from HP test
    - More detailed description for results from HP tests.
 
-```
+:::
 
 ### HP Test at EL = 90deg
 
@@ -94,11 +94,11 @@ These are results from hardpoint breakaway tests when the TMA is positioned at E
 Figure 1 shows that measured forces on the hardpoint 1 - 6 during the hardpoint axial breakaway test.
 Measured forces on all hardpoints look working properly because breakaway happened in the range of the requirement (tension: -4420 - -3456N, compression: 2981 - 3959N).
 
-```{eval-rst}
-.. Todo::
+:::{note}
+**Todo:**
 
    More detailed descriptions and explanations might be further needed.
-```
+:::
 
 :::{figure} /_static/m1m3004_hp_timeline_El_90.png
 Transition of the measured forces on each hardpoint when the TMA is at el=90deg.
@@ -133,12 +133,12 @@ In Figure 4, hardpoint 2 and hardpoint 5 were not moving to the positive directi
 Hardpoint 1 and hardpoint 6 were both staying on the position for testing positive for a shorter period of time whereas hardpoint 3 and hardpoint 4 were staying on testing negative position for a shorter period time.
 This is because depending on the position of each hardpoint.
 
-```{eval-rst}
-.. todo::
+:::{note}
+**todo:**
     - Reference cross check
 
 
-```
+:::
 
 :::{figure} /_static/m1m3004_hp_timeline_El_0.png
 Figure 4. Transition of the measured forces on each hardpoint when the TMA is at el=0deg.
