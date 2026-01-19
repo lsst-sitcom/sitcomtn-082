@@ -1,7 +1,13 @@
-:tocdepth: 1
+#############################
+Hard Point Breakaway Analysis
+#############################
+
+.. abstract::
+
+   This is a technote for the description of results from Individual Hardpoint Breakaway Test. 
 
 
-.. sectnum::
+
 
 .. Metadata such as the title, authors, and description are set in metadata.yaml
 
@@ -254,7 +260,8 @@ HP Test at el 1 deg
 Requirment discussion
 ---------------------
 
-.. rubric:: References
+References
+==========
 
-.. bibliography:: local.bib lsstbib/books.bib lsstbib/lsst.bib lsstbib/lsst-dm.bib lsstbib/refs.bib lsstbib/refs_ads.bib
-   :style: lsst_aa
+
+.. bibliography::
