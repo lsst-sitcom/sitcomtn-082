@@ -82,7 +82,6 @@ Associated JIRA tickets and requirements with this test:
 ### A general results of HP Test
 
 :::{note}
-**todo.**
    - General results from HP test
    - More detailed description for results from HP tests.
 :::
@@ -94,7 +93,6 @@ Figure 1 shows that measured forces on the hardpoint 1 - 6 during the hardpoint 
 Measured forces on all hardpoints look working properly because breakaway happened in the range of the requirement (tension: -4420 - -3456N, compression: 2981 - 3959N).
 
 :::{note}
-**todo.**
     More detailed descriptions and explanations might be further needed.
 :::
 
@@ -132,7 +130,6 @@ Hardpoint 1 and hardpoint 6 were both staying on the position for testing positi
 This is because depending on the position of each hardpoint.
 
 :::{note}
-**todo.**
     - Reference cross check
 :::
 
