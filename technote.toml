@@ -29,3 +29,6 @@ orcid = "https://orcid.org/0000-0002-1557-3560"
 name = "Vera C. Rubin Observatory Project Office"
 internal_id = "RubinObs"
 ror = "https://ror.org/048g3cy84"
+
+[technote.sphinx]
+extensions = ["sphinx_subfigure"]

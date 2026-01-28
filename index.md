@@ -96,9 +96,35 @@ Measured forces on all hardpoints look working properly because breakaway happen
     More detailed descriptions and explanations might be further needed.
 :::
 
-:::{figure} /_static/m1m3004_hp_timeline_El_90.png
-Transition of the measured forces on each hardpoint when the TMA is at el=90deg.
+::::{subfigure} A|B|C|D|E|F
+:gap: 8px
+
+:::{image} /_static/m1m3004_hp1_timeline_El_90.png
+:alt: HP1
 :::
+
+:::{image} /_static/m1m3004_hp2_timeline_El_90.png
+:alt: HP2
+:::
+
+:::{image} /_static/m1m3004_hp3_timeline_El_90.png
+:alt: HP3
+:::
+
+:::{image} /_static/m1m3004_hp4_timeline_El_90.png
+:alt: HP4
+:::
+
+:::{image} /_static/m1m3004_hp5_timeline_El_90.png
+:alt: HP5
+:::
+
+:::{image} /_static/m1m3004_hp6_timeline_El_90.png
+:alt: HP6
+:::
+
+Transition of the measured forces on each hardpoint when the TMA is at el=90deg.
+::::
 
 In Figure 2, there are the change of the measured force for each phase/status in the hardpoint breakaway test, moving Negative, testing positive, and testing negative, respectively.
 The stiffness of each curves are fitted with +-10 points from $\Delta$displacement = 0 ${\mu}m$.
