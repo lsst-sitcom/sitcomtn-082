@@ -1,5 +1,33 @@
 _build/
+.env
 .technote/
 .tox/
 venv/
 .venv/
+
+# SCons build artifacts
+.sconsign.dblite
+config.log
+.sconf_temp
+*.o
+*.os
+*.so
+*.cfgc
+*.pyc
+*_wrap.cc
+*Lib.py
+
+# Built by sconsUtils
+python/lsst/sitcom/tn082/version.py
+bin/
+*.dist-info/
+
+# Pytest
+tests/.tests
+pytest_session.txt
+.cache/
+.pytest_cache
+.coverage
+
+# Ignore notebook files
+**/.ipynb_checkpoints
