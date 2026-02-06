@@ -80,7 +80,7 @@ Associated JIRA tickets and requirements with this test:
 
 ### A general results of HP Test
 
-:::{!note}
+:::{note}
    - General results from HP test
    - More detailed description for results from HP tests.
 :::
@@ -93,7 +93,8 @@ Measured forces on all hardpoints look working properly because breakaway happen
 
 
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-31/HP1_90_30/m1m3004_hp1_timeline_El_90.png
@@ -127,7 +128,8 @@ In Figure 2, there are the change of the measured force for each phase/status in
 The stiffness of each curves are fitted with +-10 points from $\Delta$displacement = 0 ${\mu}m$.
 All stiffness slopes are shallower than specification (100N/${\mu}m$).
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-31/HP1_90_30/Force_displacement_El_90.png
@@ -166,7 +168,8 @@ $$
 erf(x) = {\frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-t^2}\,dt}
 $$ (error_function)
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-31/HP1_90_30/Force_displacement_fitting_residual_El_90.png
@@ -203,11 +206,12 @@ In F(Left) $\Delta$Displacement versus measured forces for each phase during the
 Hardpoint 1 and hardpoint 6 were both staying on the position for testing positive for a shorter period of time whereas hardpoint 3 and hardpoint 4 were staying on testing negative position for a shorter period time.
 This is because depending on the position of each hardpoint.
 
-:::{!note}
+:::{note}
     - Reference cross check
 :::
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-30/HP1_0_30/m1m3004_hp1_timeline_El_30.png
@@ -239,7 +243,8 @@ Transition of the measured forces on each hardpoint when the TMA is at el=0deg.
 
 The stiffness of each curves are fitted from $\Delta$displacement = 0 ${\mu}m$ (Figure 5).
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-30/HP1_0_30/Force_displacement_El_30.png
@@ -269,7 +274,8 @@ The stiffness of each curves are fitted from $\Delta$displacement = 0 ${\mu}m$ (
 $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=0deg.
 ::::
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-30/HP1_0_30/Force_displacement_fitting_residual_El_30.png
@@ -301,7 +307,8 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 
 ### HP Test at el 40 deg
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-26/HP1/m1m3004_hp1_timeline_El_40.png
@@ -332,7 +339,8 @@ Transition of the measured forces on each hardpoint when the TMA is at el=40deg.
 ::::
 
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-26/HP1/Force_displacement_El_40.png
@@ -362,7 +370,8 @@ Transition of the measured forces on each hardpoint when the TMA is at el=40deg.
 $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=40deg.
 ::::
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-26/HP1/Force_displacement_fitting_residual_El_40.png
@@ -390,11 +399,12 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :::
 
 (Left) $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=40deg). (Right) The residual, a difference between data and error function, with respect to $\Delta$displacement
-:::
+::::
 
 ### HP Test at el 20 deg
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-27/HP1/m1m3004_hp1_timeline_El_20.png
@@ -424,7 +434,8 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 Transition of the measured forces on each hardpoint when the TMA is at el=20deg.
 ::::
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-27/HP1/Force_displacement_El_20.png
@@ -454,7 +465,8 @@ Transition of the measured forces on each hardpoint when the TMA is at el=20deg.
 $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=20 deg.
 ::::
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-27/HP1/Force_displacement_fitting_residual_El_20.png
@@ -482,11 +494,12 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :::
 
 (Left) $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=20deg). (Right) The residual, a difference between data and error function, with respect to $\Delta$displacement
-:::
+::::
 
 ### HP Test at el 10 deg
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-31/HP1_10_30/m1m3004_hp1_timeline_El_10.png
@@ -514,7 +527,11 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :::
 
 Transition of the measured forces on each hardpoint when the TMA is at el=10deg.
-:::
+::::
+
+::::{subfigure}
+:layout-sm: 1
+:gap: 8px
 
 :::{image} /_static/2023-05-31/HP1_10_30/Force_displacement_El_10.png
 :alt: HP1
@@ -541,9 +558,10 @@ Transition of the measured forces on each hardpoint when the TMA is at el=10deg.
 :::
 
 $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=10 deg.
-:::
+::::
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-31/HP1_10_30/Force_displacement_fitting_residual_El_10.png
@@ -571,11 +589,12 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :::
 
 (Left) $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=10deg). (Right) The residual, a difference between data and error function, with respect to $\Delta$displacement
-:::
+::::
 
 ### HP Test at el 5 deg
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-31/HP1_5_30/m1m3004_hp1_timeline_El_5.png
@@ -603,7 +622,7 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :::
 
 Transition of the measured forces on each hardpoint when the TMA is at el=5deg.
-:::
+::::
 
 :::{image} /_static/2023-05-31/HP1_5_30/Force_displacement_El_5.png
 :alt: HP1
@@ -630,9 +649,10 @@ Transition of the measured forces on each hardpoint when the TMA is at el=5deg.
 :::
 
 $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=5 deg.
-:::
+::::
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-31/HP1_5_30/Force_displacement_fitting_residual_El_5.png
@@ -660,11 +680,12 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :::
 
 (Left) $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=5deg). (Right) The residual, a difference between data and error function, with respect to $\Delta$displacement
-:::
+::::
 
 ### HP Test at el 1 deg
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-30/HP1_1_30/m1m3004_hp1_timeline_El_1.png
@@ -692,9 +713,10 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :::
 
 Transition of the measured forces on each hardpoint when the TMA is at el=1deg.
-:::
+::::
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-30/HP1_1_30/Force_displacement_fitting_residual_El_1.png
@@ -722,9 +744,10 @@ Transition of the measured forces on each hardpoint when the TMA is at el=1deg.
 :::
 
 $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test when the TMA is at el=1 deg.
-:::
+::::
 
-::::{subfigure} A|B|C|D|E|F
+::::{subfigure}
+:layout-sm: 1
 :gap: 8px
 
 :::{image} /_static/2023-05-30/HP1_1_30/Force_displacement_fitting_residual_El_1.png
@@ -752,7 +775,7 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :::
 
 (Left) $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=1deg). (Right) The residual, a difference between data and error function, with respect to $\Delta$displacement
-:::
+::::
 
 ### Requirment discussion
 
