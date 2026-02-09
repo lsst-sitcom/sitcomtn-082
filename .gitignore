@@ -31,3 +31,4 @@ pytest_session.txt
 
 # Ignore notebook files
 **/.ipynb_checkpoints
+\.ipynb_checkpoints
