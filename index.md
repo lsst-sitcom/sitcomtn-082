@@ -777,6 +777,28 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 (Left) $\Delta$Displacement versus measured forces for each phase during the hardpoint breakaway test fit with error function (the TMA at el=1deg). (Right) The residual, a difference between data and error function, with respect to $\Delta$displacement
 ::::
 
+## Historical Trending 
+
+In this section, we analyze the historical trends of the hardpoint breakaway tests using data from completed tests between 2023 and the present.
+The previous figures for each hardpoint show that lower elevation angles tend to be associated with higher stiffness values. The relationship between elevation and other parameters may help identify patterns that could reduce the risk of operational issues.
+For this reason, it is important to study the behavior of each hardpoint over time.
+
+
+:::{note}
+- Each month has a different number of testing days.
+- Some days have no tests, while others have more than one test.
+:::
+
+
+```{raw} html 
+<iframe 
+ src="_static/dashboard_hardpoints.html" 
+ width="100%"height="750px" 
+ frameborder="0" 
+ style="border:1px solid #E0E0E0; border-radius:6px;"> 
+ </iframe> 
+```
+
 ### Requirment discussion
 
 ## References
