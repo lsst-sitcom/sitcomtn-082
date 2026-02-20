@@ -3,4 +3,4 @@
 
 from documenteer.conf.technote import *  # noqa: F403
 html_static_path = ["_static"]
-html_extra_path = ["_static"]
+#html_extra_path = ["_static"]
