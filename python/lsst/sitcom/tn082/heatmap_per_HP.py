@@ -18,13 +18,13 @@ from matplotlib.figure import Figure
 TESTING_STATES_DEFAULT = ("TESTINGPOSITIVE", "TESTINGNEGATIVE")
 
 # PNG export resolution in dots per inch
-_DPI_PNG = 150
+DPI_PNG = 150
 
 # Minimum figure width in inches
-_FIG_WIDTH_MIN = 10
+FIG_WIDTH_MIN = 10
 
 # Horizontal scale factor: inches per month column
-_FIG_WIDTH_PER_MONTH = 0.6
+FIG_WIDTH_PER_MONTH = 0.6
 
 
 # Preprocessing and helper functions
@@ -87,7 +87,7 @@ def _prep_filtered(
     return d
 
 
-def _clean_numeric(d: pd.DataFrame, col: str) -> pd.DataFrame:
+def clean_numeric(d: pd.DataFrame, col: str) -> pd.DataFrame:
     """
     Convert 'col' to numeric and drop rows with NaN, infinities or null '_t'.
 
@@ -104,7 +104,7 @@ def _clean_numeric(d: pd.DataFrame, col: str) -> pd.DataFrame:
     return d[np.isfinite(d[col]) & d["_t"].notna()]
 
 
-def _compute_color_limits(
+def compute_color_limits(
     df: pd.DataFrame,
     *,
     time_col: str,
@@ -133,7 +133,7 @@ def _compute_color_limits(
     Returns:
         Tuple (vmin, vmax) with the global stiffness range.
     """
-    dscale = _prep_filtered(
+    dscale = prep_filtered(
         df,
         time_col=time_col,
         time_min_utc=time_min_utc,
@@ -142,14 +142,14 @@ def _compute_color_limits(
         only_stiff_ok=only_stiff_ok,
         only_in_band=only_in_band,
     )
-    dscale = _clean_numeric(dscale, stiffness_col)
+    dscale = clean_numeric(dscale, stiffness_col)
     return (
         float(np.nanmin(dscale[stiffness_col].to_numpy())),
         float(np.nanmax(dscale[stiffness_col].to_numpy())),
     )
 
 
-def _build_pivot(
+def build_pivot(
     d: pd.DataFrame, stiffness_col: str, agg: str
 ) -> pd.DataFrame:
     """
@@ -252,7 +252,7 @@ def plot_monthly_heatmap_stiffness(
         raise ValueError(f"agg must be 'mean' or 'median', got: '{agg}'")
 
     # Filter and clean
-    d = _prep_filtered(
+    d = prep_filtered(
         df,
         time_col=time_col,
         time_min_utc=time_min_utc,
@@ -261,7 +261,7 @@ def plot_monthly_heatmap_stiffness(
         only_stiff_ok=only_stiff_ok,
         only_in_band=only_in_band,
     )
-    d = _clean_numeric(d, stiffness_col)
+    d = clean_numeric(d, stiffness_col)
 
     if d.empty:
         raise ValueError(
@@ -270,13 +270,13 @@ def plot_monthly_heatmap_stiffness(
         )
 
     # Build pivot table 
-    pivot = _build_pivot(d, stiffness_col, agg)
+    pivot = build_pivot(d, stiffness_col, agg)
     mat = pivot.to_numpy()
 
     # Colormap limits for shared scaling across testing states.
     s = set(states) if states is not None else set()
     if states is not None and s.issubset(set(TESTING_STATES_DEFAULT)):
-        vmin, vmax = _compute_color_limits(
+        vmin, vmax = compute_color_limits(
             df,
             time_col=time_col,
             stiffness_col=stiffness_col,
@@ -291,7 +291,7 @@ def plot_monthly_heatmap_stiffness(
         vmax = float(np.nanmax(mat))
 
     # Plot
-    fig_width = max(_FIG_WIDTH_MIN, _FIG_WIDTH_PER_MONTH * pivot.shape[1])
+    fig_width = max(FIG_WIDTH_MIN, FIG_WIDTH_PER_MONTH * pivot.shape[1])
     fig, ax = plt.subplots(figsize=(fig_width, 4.5), constrained_layout=True)
 
     im = ax.imshow(
@@ -327,7 +327,7 @@ def plot_monthly_heatmap_stiffness(
         state_part = "ALL" if states is None else "-".join(states)
         filename = f"heatmap_stiffness_{agg}_{state_part}.png"
         path = os.path.join(output_dir, filename)
-        fig.savefig(path, dpi=_DPI_PNG, bbox_inches="tight")
+        fig.savefig(path, dpi=DPI_PNG, bbox_inches="tight")
         plt.close(fig)
         return path
 
