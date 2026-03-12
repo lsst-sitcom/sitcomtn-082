@@ -940,9 +940,14 @@ Regarding stiffness, the overall trend for both states has become more linear fo
 Stiffness vs. Time: Transparent lines represent daily mean values for both states. Solid lines represent the stiffness trend obtained by applying a local linear regression to model the mean values.
 ::::
 
-If standar deviation is calculated, we can see, that HP3 and HP4 have the highest values. 
+If standard deviation is calculated, we can see, that HP3 and HP4 have the highest values. 
 
-::::{figure} /_static/std_by_hp_2025.png
+:::{figure} /_static/std_by_hp_2025.png
+:alt: STD
+:::
+
+Standard deviation for each hp since 2025.
+:::
  
 
 
