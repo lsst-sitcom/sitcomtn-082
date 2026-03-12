@@ -780,6 +780,7 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 # Historical Trending 
 
 The previous figures for each hardpoint at different test days show, for example, that lower elevation angles tend to be associated with higher stiffness values. The relationship between stiffness and other parameters may help identify patterns that could reduce the risk of operational issues, which gives us clues about the importance to study the behavior of each hardpoint over time. 
+
 Therefore, in this section, we analyze the historical trends of the hardpoint breakaway tests using data from completed tests between 2023 and the present day.
 
 
@@ -852,7 +853,7 @@ Plots breakaway force vs breakaway displacement for each hardpoint. The blue cir
 
 Analyzing each hardpoint individually provides insights into their mechanical condition and therefore the safety of the M1M3 mirror. Hence another element to consider is the behavior of the hardpoints over time.
 
-The dashboard reveals that the trend for each HP differs. We can observe that the period from 2023 to late 2024 was the most unstable, whereas the period from 2025 to the present shows a more linear behavior. Additionally, the heatmap indicates that HP2 exhibited higher stiffness at the end of 2023.
+The dashboard reveals that the trend for each HP differs. We can observe that the period from 2023 to late 2024 was the most unstable, whereas the period from 2025 to the present shows a more linear behavior. Additionally, the heatmap indicates that HP2 exhibited lower stiffness at the end of 2023.
 
 ::::{subfigure}
 :layout-sm: 1
@@ -870,7 +871,8 @@ The dashboard reveals that the trend for each HP differs. We can observe that th
 Both plots show high stiffness values during 2023 and 2024.
 ::::
 
-Due to these observations, a more robust analysis should prioritize data from 2025 onwards.
+Based on these observations, a more robust analysis should prioritize data from 2025 onwards. In addition, three different filters were applied to exclude zeros, non-physical values, and days with incomplete states (i.e., days containing only 'testing positive' or 'testing negative' states).
+Consequently, 149 valid days have been retained since 2025.
 
 The following plots illustrate how each HP changes depending on the testing state. Asymmetry between compression and tension is expected, as the piston sizes differ while the internal pressure remains equal. 
 
@@ -942,10 +944,8 @@ Stiffness vs. Time: Transparent lines represent daily mean values for both state
 
 If standard deviation is calculated, we can see, that HP3 and HP4 have the highest values. 
 
-:::{figure} /_static/std_by_hp_2025.png
+:::{figure} _static/std_by_hp_2025.png
 :alt: STD
-:::
-
 Standard deviation for each hp since 2025.
 :::
  

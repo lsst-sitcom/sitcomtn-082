@@ -33,7 +33,7 @@ M_TO_UM = 1e6      # Convertion factor: meters → micrometers
 BREAKAWAY_DISP_UM = 1.0        # Displacement gaps (µm) to detect breakaway.
 BREAKAWAY_MIN_CONSEC = 3       # Consecutive samples above threshold to confirm breakaway.
 DISP_FIT_UM = 100              # Displacement window maximum (µm) for stiffness fit.
-FIT_POINTS_AROUND_ZERO = 10    # Points around zero for linear fit.
+FIT_POINTS_AROUND_ZERO = 20    # Points around zero for linear fit.
 
 # Stiffness quality filters
 STIFFNESS_NEG_CLAMP_EPS = -0.5  # Small negatives [-eps, 0) rounded to 0.0.
@@ -162,7 +162,7 @@ def build_state_segments(
     """
     Builds contiguous state segments from a series of temporal states.
 
-    The output segment is a tuple list of (t_inicio, t_fin, estado_entero) covering the window [t0, t1].
+    The output segment is a tuple list of (t_start, t_end, state) covering the window [t0, t1].
     Changes in state are detected by comparing each value with the previous one. 
     The endpoints are extended to t0 and t1 to cover the entire window of interest.
 
@@ -172,7 +172,7 @@ def build_state_segments(
         t1: End of the window of interest.
 
     Returns:
-        List of tuples (t_inicio, t_fin, estado), ordered chronologically.
+        List of tuples (t_start, t_end, state), ordered chronologically.
         If the input series is empty or contains only NaNs, returns an empty list.
     """
     if status_series is None or status_series.empty:
@@ -533,31 +533,36 @@ async def extract_features_for_groups(
                 ba_force = float(df_state["force"].iloc[ba_idx])        if ba_idx is not None else np.nan
                 ba_time  = df_state.index[ba_idx]                       if ba_idx is not None else pd.NaT
 
-                dur_s = (seg[1] - seg[0]).total_seconds() if seg is not None else np.nan
+                 # Real segment times for this HP+state
+                seg_t0  = seg[0] if seg is not None else pd.NaT
+                seg_t1  = seg[1] if seg is not None else pd.NaT
+                dur_s   = (seg[1] - seg[0]).total_seconds() if seg is not None else np.nan
+
 
                 rows.append({
                     "date":                  date_str,
                     "month":                 date_str[:7],
                     "group_id":              group_id,
+                    "group_t_start_utc":     t0,    # window of the full test event
+                    "group_t_end_utc":       t1,    # window of the full test event
                     "hp":                    hp,
                     "state":                 state_name,
-                    "t_start_utc":           t0,
-                    "t_end_utc":             t1,
+                    "t_start_utc":           seg_t0,  # real start of this HP+state
+                    "t_end_utc":             seg_t1,  # real end   of this HP+state
                     "state_duration_s":      dur_s,
                     "stiffness_raw_N_per_um": k_raw,
                     "stiffness_N_per_um":    k_use,
-                    # stiff_ok: valid stiffness in relevant states and within expected range.
                     "stiff_ok": bool(
-                        (state_name in STIFF_OK_STATES)
+                        (state_name in ("TESTINGPOSITIVE", "TESTINGNEGATIVE"))
                         and np.isfinite(k_use)
                         and (0.0 <= k_use <= STIFFNESS_MAX_ABS)
                     ),
                     **stats,
-                    "breakaway_time_utc":    ba_time,
-                    "breakaway_force_N":     ba_force,
-                    "breakaway_disp_um":     ba_disp,
-                    "elevation_deg":         el_deg,
-                    "azimuth_deg":           az_deg,
+                    "breakaway_time_utc":   ba_time,
+                    "breakaway_force_N":    ba_force,
+                    "breakaway_disp_um":    ba_disp,
+                    "elevation_deg":        el_deg,
+                    "azimuth_deg":          az_deg,
                 })
 
     df_feat = pd.DataFrame(rows)
@@ -576,5 +581,5 @@ async def extract_features_for_groups(
 
     df_feat.to_csv(outpath, index=False)
     if debug:
-        print(f"Saved CSV: {outpath} | filas={len(df_feat)}")
+        print(f"Saved CSV: {outpath} | rows={len(df_feat)}")
     return df_feat
