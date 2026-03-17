@@ -3,7 +3,7 @@
 """
 Interactive Bokeh visualizations for M1M3 hardpoint analysis.
 
-Dashboards that allow exploring stiffness and test counts by day, hardpoint, 
+Dashboards that allow exploring stiffness and test counts by day, hardpoint,
 and state with interactive filters without needing a server.
 """
 
@@ -19,15 +19,15 @@ from bokeh.embed import file_html
 
 
 # Constants for visualization parameters
-_MS_PER_DAY = 24 * 60 * 60 * 1000   # Miliseconds in a day (used for bar width).
-_BAR_WIDTH_FRAC = 0.85               # Fraction of the day to use as bar width to avoid overlap.
-_DEFAULT_ALPHA = 0.9                 # Opacity for visible elements (used in JS filter).
-_HIDDEN_ALPHA = 0.0                  # Opacity for hidden elements in JS filter.
-_SCATTER_SIZE = 7                    # Scatter size for stiffness plot.
-_PALETTE = Category10[10]            # Palette for hardpoints.
+MS_PER_DAY = 24 * 60 * 60 * 1000  # Miliseconds in a day (used for bar width).
+BAR_WIDTH_FRAC = 0.85  # Fraction of the day to use as bar width to avoid overlap.
+DEFAULT_ALPHA = 0.9  # Opacity for visible elements (used in JS filter).
+HIDDEN_ALPHA = 0.0  # Opacity for hidden elements in JS filter.
+SCATTER_SIZE = 7  # Scatter size for stiffness plot.
+PALETTE = Category10[10]  # Palette for hardpoints.
 
 
-def _prepare_daily_data(df_feat: pd.DataFrame) -> pd.DataFrame:
+def prepare_daily_data(df_feat: pd.DataFrame) -> pd.DataFrame:
     """
     Clean and aggregate feature data to daily level by (day, HP, state).
 
@@ -36,7 +36,7 @@ def _prepare_daily_data(df_feat: pd.DataFrame) -> pd.DataFrame:
        - Remove infinities and rows with NaN in key columns.
        - Group by (day, hp, state) calculating count, mean and std of stiffness.
        - Add 'day_ms' column (epoch in ms) for Bokeh datetime compatibility.
-       - Initialize 'alpha' to _DEFAULT_ALPHA (used by JS filter).
+       - Initialize 'alpha' to DEFAULT_ALPHA (used by JS filter).
 
     Args:
         df_feat: Features DataFrame with columns 'date', 'hp', 'state', 'stiffness_N_per_um' and 'group_id'.
@@ -45,44 +45,49 @@ def _prepare_daily_data(df_feat: pd.DataFrame) -> pd.DataFrame:
         day, hp, state, n_tests, stiff_mean, stiff_std, day_ms, alpha.
 
     Raises:
-        ValueError: If the resulting daily DataFrame is empty after cleaning, 
+        ValueError: If the resulting daily DataFrame is empty after cleaning,
         indicating issues with the input data.
     """
     dfp = df_feat.copy()
     dfp["date"] = pd.to_datetime(dfp["date"], errors="coerce")
     dfp["hp"] = dfp["hp"].astype(str)
     dfp["state"] = dfp["state"].astype(str)
-    dfp["stiffness_N_per_um"] = pd.to_numeric(dfp["stiffness_N_per_um"], errors="coerce")
+    dfp["stiffness_N_per_um"] = pd.to_numeric(
+        dfp["stiffness_N_per_um"], errors="coerce"
+    )
     dfp = dfp.replace([np.inf, -np.inf], np.nan)
     dfp = dfp.dropna(subset=["date", "hp", "state", "stiffness_N_per_um"])
     dfp["day"] = dfp["date"].dt.floor("D")
 
-    # Select the appropriate column for counting tests: prefer 
+    # Select the appropriate column for counting tests: prefer
     # 'group_id' if available, otherwise use 'stiffness_N_per_um'.
     count_col = "group_id" if "group_id" in dfp.columns else "stiffness_N_per_um"
 
     daily = (
-        dfp.groupby(["day", "hp", "state"], as_index=False)
-           .agg(
-               n_tests=(count_col, "count"),
-               stiff_mean=("stiffness_N_per_um", "mean"),
-               stiff_std=("stiffness_N_per_um", "std"),
-           )
-    ).sort_values("day").reset_index(drop=True)
+        (
+            dfp.groupby(["day", "hp", "state"], as_index=False).agg(
+                n_tests=(count_col, "count"),
+                stiff_mean=("stiffness_N_per_um", "mean"),
+                stiff_std=("stiffness_N_per_um", "std"),
+            )
+        )
+        .sort_values("day")
+        .reset_index(drop=True)
+    )
 
     if daily.empty:
         raise ValueError(
-            "DataFrame was empty after cleaning. Please check that 'date', 'hp', 'state' and " \
+            "DataFrame was empty after cleaning. Please check that 'date', 'hp', 'state' and "
             "'stiffness_N_per_um' have valid data."
         )
 
     # Epoch in milliseconds for Bokeh datetime axes compatibility
     daily["day_ms"] = (daily["day"].astype("int64") // 10**6).astype(np.int64)
-    daily["alpha"] = _DEFAULT_ALPHA
+    daily["alpha"] = DEFAULT_ALPHA
     return daily
 
 
-def _assign_colors(daily: pd.DataFrame, hp_list: list[str]) -> pd.DataFrame:
+def assign_colors(daily: pd.DataFrame, hp_list: list[str]) -> pd.DataFrame:
     """
     Asigns a Category10 color to each hardpoint.
 
@@ -93,12 +98,12 @@ def _assign_colors(daily: pd.DataFrame, hp_list: list[str]) -> pd.DataFrame:
     Returns:
         Daily DataFrame with added 'color' column.
     """
-    hp_to_color = {hp: _PALETTE[i % len(_PALETTE)] for i, hp in enumerate(hp_list)}
+    hp_to_color = {hp: PALETTE[i % len(PALETTE)] for i, hp in enumerate(hp_list)}
     daily["color"] = daily["hp"].map(hp_to_color).fillna("grey")
     return daily
 
 
-def _make_filter_widgets(
+def make_filter_widgets(
     hp_list: list[str], state_list: list[str]
 ) -> tuple[Select, MultiSelect]:
     """
@@ -128,7 +133,7 @@ def _make_filter_widgets(
     return hp_sel, st_sel
 
 
-def _make_filter_callback(
+def make_filter_callback(
     src: ColumnDataSource, hp_sel: Select, st_sel: MultiSelect
 ) -> CustomJS:
     """
@@ -154,8 +159,8 @@ def _make_filter_callback(
           const d = src.data;
           const hp = hp_sel.value;
           const states = new Set(st_sel.value);
-          const alpha_vis = {_DEFAULT_ALPHA};
-          const alpha_hid = {_HIDDEN_ALPHA};
+          const alpha_vis = {DEFAULT_ALPHA};
+          const alpha_hid = {HIDDEN_ALPHA};
 
           for (let i = 0; i < d['alpha'].length; i++) {{
             const ok_hp = (hp === "ALL") || (d['hp'][i] === hp);
@@ -167,13 +172,11 @@ def _make_filter_callback(
     )
 
 
-def _build_count_figure(
-    src: ColumnDataSource, x_range=None
-) -> tuple[figure, object]:
+def build_count_figure(src: ColumnDataSource, x_range=None) -> tuple[figure, object]:
     """
     Constructs the daily test count bar chart.
 
-    The width of each bar is _BAR_WIDTH_FRAC of the day to avoid overlap.
+    The width of each bar is BAR_WIDTH_FRAC of the day to avoid overlap.
     The legend is interactive (click to hide/show by HP).
 
     Args:
@@ -196,7 +199,7 @@ def _build_count_figure(
     r_bar = p.vbar(
         x="day",
         top="n_tests",
-        width=int(_MS_PER_DAY * _BAR_WIDTH_FRAC),
+        width=int(MS_PER_DAY * BAR_WIDTH_FRAC),
         source=src,
         fill_color={"field": "color"},
         line_color={"field": "color"},
@@ -207,26 +210,25 @@ def _build_count_figure(
 
     p.legend.title = "HP"
     p.legend.location = "top_right"
-    p.legend.click_policy = "hide"
 
-    p.add_tools(HoverTool(
-        renderers=[r_bar],
-        tooltips=[
-            ("Día",     "@day{%F}"),
-            ("HP",      "@hp"),
-            ("Estado",  "@state"),
-            ("N tests", "@n_tests"),
-            ("Rigidez media", "@stiff_mean{0.00} N/µm"),
-        ],
-        formatters={"@day": "datetime"},
-    ))
+    p.add_tools(
+        HoverTool(
+            renderers=[r_bar],
+            tooltips=[
+                ("Día", "@day{%F}"),
+                ("HP", "@hp"),
+                ("Estado", "@state"),
+                ("N tests", "@n_tests"),
+                ("Rigidez media", "@stiff_mean{0.00} N/µm"),
+            ],
+            formatters={"@day": "datetime"},
+        )
+    )
 
     return p, r_bar
 
 
-def _build_stiffness_figure(
-    src: ColumnDataSource, x_range
-) -> figure:
+def build_stiffness_figure(src: ColumnDataSource, x_range) -> figure:
     """
     Constructs the daily mean stiffness scatter plot.
 
@@ -251,9 +253,10 @@ def _build_stiffness_figure(
     p.yaxis.axis_label = "Stiffness(N/µm)"
 
     r_pts = p.scatter(
-        "day", "stiff_mean",
+        "day",
+        "stiff_mean",
         source=src,
-        size=_SCATTER_SIZE,
+        size=SCATTER_SIZE,
         fill_color={"field": "color"},
         line_color={"field": "color"},
         fill_alpha={"field": "alpha"},
@@ -263,20 +266,23 @@ def _build_stiffness_figure(
 
     p.legend.visible = False
 
-    p.add_tools(HoverTool(
-        renderers=[r_pts],
-        tooltips=[
-            ("Day",            "@day{%F}"),
-            ("HP",             "@hp"),
-            ("State",         "@state"),
-            ("Stiffness mean",  "@stiff_mean{0.00} N/µm"),
-            ("Stiffness std",    "@stiff_std{0.00} N/µm"),
-            ("N tests",        "@n_tests"),
-        ],
-        formatters={"@day": "datetime"},
-    ))
+    p.add_tools(
+        HoverTool(
+            renderers=[r_pts],
+            tooltips=[
+                ("Day", "@day{%F}"),
+                ("HP", "@hp"),
+                ("State", "@state"),
+                ("Stiffness mean", "@stiff_mean{0.00} N/µm"),
+                ("Stiffness std", "@stiff_std{0.00} N/µm"),
+                ("N tests", "@n_tests"),
+            ],
+            formatters={"@day": "datetime"},
+        )
+    )
 
     return p
+
 
 def save_dashboard_html(
     df_feat: pd.DataFrame,
@@ -299,6 +305,7 @@ def save_dashboard_html(
     print(f"Dashboard saved to: {outpath}")
     return outpath
 
+
 def bokeh_daily_stiffness_dashboard(df_feat: pd.DataFrame):
     """
     Stiffness and daily test count interactive dashboard with Bokeh.
@@ -307,12 +314,12 @@ def bokeh_daily_stiffness_dashboard(df_feat: pd.DataFrame):
       - Upper plot: daily test count bars by HP and state.
       - Lower plot: daily mean stiffness scatter (N/µm).
       - HP filter: Simple Select with "ALL" option to show all hardpoints.
-      - State filter: MultiSelect to choose one or more test states.    
+      - State filter: MultiSelect to choose one or more test states.
 
-    The filters operate through a CustomJS that modifies the 'alpha' column of the shared ColumnDataSource, 
+    The filters operate through a CustomJS that modifies the 'alpha' column of the shared ColumnDataSource,
     allowing to show/hide elements without needing a Python server (standalone HTML).
 
-    Range selection (zoom) in the X axis is synchronized between both plots, 
+    Range selection (zoom) in the X axis is synchronized between both plots,
     facilitating temporal analysis of counts and stiffness together.
 
     Args:
@@ -325,21 +332,21 @@ def bokeh_daily_stiffness_dashboard(df_feat: pd.DataFrame):
     Raises:
         ValueError: If the DataFrame is empty after data cleaning.
     """
-    daily = _prepare_daily_data(df_feat)
+    daily = prepare_daily_data(df_feat)
 
     hp_list = sorted(daily["hp"].unique().tolist())
     state_list = sorted(daily["state"].unique().tolist())
 
-    daily = _assign_colors(daily, hp_list)
+    daily = assign_colors(daily, hp_list)
     src = ColumnDataSource(daily)
 
-    hp_sel, st_sel = _make_filter_widgets(hp_list, state_list)
-    cb = _make_filter_callback(src, hp_sel, st_sel)
+    hp_sel, st_sel = make_filter_widgets(hp_list, state_list)
+    cb = make_filter_callback(src, hp_sel, st_sel)
     hp_sel.js_on_change("value", cb)
     st_sel.js_on_change("value", cb)
 
-    p_count, _ = _build_count_figure(src)
-    p_stiff = _build_stiffness_figure(src, x_range=p_count.x_range)
+    p_count, _ = build_count_figure(src)
+    p_stiff = build_stiffness_figure(src, x_range=p_count.x_range)
 
     return column(
         row(hp_sel, st_sel),

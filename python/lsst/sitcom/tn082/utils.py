@@ -1,8 +1,8 @@
 # python/lsst/sitcom/tn082/utils.py
 
 """
-Functions for general use. 
-Includes handling of UTC indices, generating time ranges by chunks, 
+Functions for general use.
+Includes handling of UTC indices, generating time ranges by chunks,
 grouping by time gaps, and creating directories.
 """
 
@@ -19,7 +19,7 @@ def ensure_utc_index(df: pd.DataFrame) -> pd.DataFrame:
     If it already has a timezone, it is converted to UTC.
 
     Args:
-        df: Input dataFrame. 
+        df: Input dataFrame.
 
     Returns:
         DataFrame with UTC DatetimeIndex sorted, or the same df if it is empty.
@@ -52,14 +52,14 @@ def chunk_ranges_utc(
     """
     Range generator for overlapping time chunks between start and end timestamps.
 
-    Overlapping avoids losing events at the boundaries between chunks. 
-    If the overlap is greater than or equal to the chunk size, it is reduced to zero 
+    Overlapping avoids losing events at the boundaries between chunks.
+    If the overlap is greater than or equal to the chunk size, it is reduced to zero
     to prevent infinite loops, without raising an exception.
 
     Args:
         start: Star timestamp (UTC).
         end: End timestamp (UTC).
-        days: Size for each chunk in days. 
+        days: Size for each chunk in days.
         overlap_hours: Hours of overlap between consecutive chunks.
 
     Yields:
@@ -85,15 +85,15 @@ def group_by_gaps(df: pd.DataFrame, gap: str) -> pd.DataFrame:
     """
     Asign group identifiers to consecutive rows based on time gaps.
 
-    A new group starts whenever the time difference between two consecutive rows 
+    A new group starts whenever the time difference between two consecutive rows
     exceeds the 'gap' threshold. This allows identifying bursts of activity separated in time.
-   
+
     Args:
         df: Dataframe with sorted DatetimeIndex.
         gap: Gap threshold as a Timedelta string (e.g. '3min', '30s').
 
     Returns:
-        Original dataframe with an additional 'group_id' column. 
+        Original dataframe with an additional 'group_id' column.
         If the input df is empty, it is returned unchanged.
     """
     if df is None or df.empty:

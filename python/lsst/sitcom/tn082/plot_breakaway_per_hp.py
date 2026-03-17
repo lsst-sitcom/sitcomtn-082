@@ -16,27 +16,28 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
 
-# Constants 
+# Constants
 
 # Acceptance bands for breakaway force (N).
-COMP_LIMITS = (2981, 3959)   # Compression band
-TENS_LIMITS = (-4420, -3456) # Tension band
+COMP_LIMITS = (2981, 3959)  # Compression band
+TENS_LIMITS = (-4420, -3456)  # Tension band
 
 # Default test states to include
 DEFAULT_STATES = ("TESTINGPOSITIVE", "TESTINGNEGATIVE")
 
 # Visual parameters
-BAND_ALPHA = 0.12       # Shaded band transparency
-BAND_LINE_LW = 1.0      # Dashed boundary line width
-SCATTER_SIZE_IN = 18    # Marker size for in-band points (circles)
-SCATTER_SIZE_OUT = 22   # Marker size for outliers points (crosses)
+BAND_ALPHA = 0.12  # Shaded band transparency
+BAND_LINE_LW = 1.0  # Dashed boundary line width
+SCATTER_SIZE_IN = 18  # Marker size for in-band points (circles)
+SCATTER_SIZE_OUT = 22  # Marker size for outliers points (crosses)
 SCATTER_ALPHA_IN = 0.8
 SCATTER_ALPHA_OUT = 0.9
 FIG_SIZE = (6.8, 5.2)
 DPI_DEFAULT = 150
 
 
-# Helper functions 
+# Helper functions
+
 
 def filter_and_clean(
     df: pd.DataFrame,
@@ -98,8 +99,9 @@ def draw_acceptance_bands(ax: plt.Axes) -> None:
     for lo, hi in (COMP_LIMITS, TENS_LIMITS):
         ax.axhspan(lo, hi, alpha=BAND_ALPHA, color="tab:blue")
         for y in (lo, hi):
-            ax.axhline(y, linestyle="--", linewidth=BAND_LINE_LW,
-                       color="tab:blue", alpha=0.5)
+            ax.axhline(
+                y, linestyle="--", linewidth=BAND_LINE_LW, color="tab:blue", alpha=0.5
+            )
 
 
 def scatter_state(
@@ -125,23 +127,30 @@ def scatter_state(
     inb = sub_state[sub_state[in_band_col]]
     if not inb.empty:
         ax.scatter(
-            inb[disp_col], inb[force_col],
-            marker="o", s=SCATTER_SIZE_IN,
+            inb[disp_col],
+            inb[force_col],
+            marker="o",
+            s=SCATTER_SIZE_IN,
             label=state,
-            color=color, alpha=SCATTER_ALPHA_IN,
+            color=color,
+            alpha=SCATTER_ALPHA_IN,
         )
 
     outb = sub_state[~sub_state[in_band_col]]
     if not outb.empty:
         ax.scatter(
-            outb[disp_col], outb[force_col],
-            marker="x", s=SCATTER_SIZE_OUT,
+            outb[disp_col],
+            outb[force_col],
+            marker="x",
+            s=SCATTER_SIZE_OUT,
             label=f"{state} - outliers",
-            color=color, alpha=SCATTER_ALPHA_OUT,
+            color=color,
+            alpha=SCATTER_ALPHA_OUT,
         )
 
 
 # Main function
+
 
 def plot_breakaway_per_hp(
     df: pd.DataFrame,
@@ -198,7 +207,8 @@ def plot_breakaway_per_hp(
             if sub_state.empty:
                 continue
             scatter_state(
-                ax, sub_state,
+                ax,
+                sub_state,
                 state=st,
                 color=color_map[st],
                 force_col=force_col,

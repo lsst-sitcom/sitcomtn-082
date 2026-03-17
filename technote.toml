@@ -30,5 +30,8 @@ name = "Vera C. Rubin Observatory Project Office"
 internal_id = "RubinObs"
 ror = "https://ror.org/048g3cy84"
 
+[[technote.authors]]
+name = {given = "Noah", family = "Gonzalez"}
+
 [technote.sphinx]
 extensions = ["sphinx_subfigure"]

@@ -14,7 +14,9 @@ from bokeh.layouts import column, row
 def normal_pdf(x: np.ndarray, mu: float, sigma: float) -> np.ndarray:
     if (not np.isfinite(mu)) or (not np.isfinite(sigma)) or sigma <= 0:
         return np.full_like(x, np.nan, dtype=float)
-    return (1.0 / (sigma * np.sqrt(2.0 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+    return (1.0 / (sigma * np.sqrt(2.0 * np.pi))) * np.exp(
+        -0.5 * ((x - mu) / sigma) ** 2
+    )
 
 
 # Prepare DataFrame: clean, filter, bin elevation
@@ -32,11 +34,15 @@ def prep_df_for_gauss(
 
     dfp["hp"] = pd.to_numeric(dfp["hp"], errors="coerce")
     dfp["state"] = dfp["state"].astype(str)
-    dfp["stiffness_N_per_um"] = pd.to_numeric(dfp["stiffness_N_per_um"], errors="coerce")
+    dfp["stiffness_N_per_um"] = pd.to_numeric(
+        dfp["stiffness_N_per_um"], errors="coerce"
+    )
     dfp["elevation_deg"] = pd.to_numeric(dfp["elevation_deg"], errors="coerce")
 
     dfp = dfp.replace([np.inf, -np.inf], np.nan)
-    dfp = dfp.dropna(subset=["hp", "state", "stiffness_N_per_um", "elevation_deg"]).copy()
+    dfp = dfp.dropna(
+        subset=["hp", "state", "stiffness_N_per_um", "elevation_deg"]
+    ).copy()
 
     if states is not None:
         dfp = dfp[dfp["state"].isin(states)].copy()
@@ -53,7 +59,7 @@ def bokeh_stiffness_gaussian_by_elevation(
     *,
     el_bin_w: int = 5,
     hist_bins: int = 40,
-    clip_percentiles: tuple[float, float] = (1, 99), 
+    clip_percentiles: tuple[float, float] = (1, 99),
     min_n_fit: int = 10,
     states: list[str] | None = None,
     title: str = "Stiffness distribution with normal fit",
@@ -62,16 +68,20 @@ def bokeh_stiffness_gaussian_by_elevation(
     Create a Bokeh layout (standalone) with:
       - stiffness histogram (density)
       - Normal fit curve (mu, sigma) for the selected subset
-      - selectors: HP, State, Elevation-bin 
+      - selectors: HP, State, Elevation-bin
     """
     dfp = prep_df_for_gauss(df_feat, states=states)
 
     # Bin elevation into discrete bins of width el_bin_w (e.g., 0-5, 5-10, etc.)
     w = int(el_bin_w)
     dfp["el_bin_lo"] = np.floor(dfp["elevation_deg"].to_numpy(float) / w) * w
-    dfp["el_bin_lo"] = pd.Series(dfp["el_bin_lo"], index=dfp.index).round().astype("Int64")
+    dfp["el_bin_lo"] = (
+        pd.Series(dfp["el_bin_lo"], index=dfp.index).round().astype("Int64")
+    )
     dfp["el_bin_hi"] = (dfp["el_bin_lo"] + w).astype("Int64")
-    dfp["el_bin_label"] = dfp["el_bin_lo"].astype(str) + "-" + dfp["el_bin_hi"].astype(str)
+    dfp["el_bin_label"] = (
+        dfp["el_bin_lo"].astype(str) + "-" + dfp["el_bin_hi"].astype(str)
+    )
     dfp = dfp[dfp["el_bin_label"] != "<NA>-<NA>"].copy()
 
     hp_list = sorted(dfp["hp"].unique().tolist())
@@ -93,15 +103,31 @@ def bokeh_stiffness_gaussian_by_elevation(
     hist_right = hist_edges[1:]
     pdf_x = np.linspace(x_min, x_max, 250)
 
-    # Precompute ALL histograms and normal fits for every (hp, elevation_bin, state) combination to enable fast JS filtering later. 
+    # Precompute ALL histograms and normal fits for every (hp, elevation_bin, state) combination to enable fast JS filtering later.
     # This is a bit more memory intensive but makes the interactive experience smooth without Python callbacks.
-    hist_rows = {"hp": [], "el_bin_label": [], "state": [], "left": [], "right": [], "top": []}
-    pdf_rows  = {"hp": [], "el_bin_label": [], "state": [], "x": [], "y": []}
-    stat_rows = {"hp": [], "el_bin_label": [], "state": [], "n": [], "mu": [], "sigma": []}
+    hist_rows = {
+        "hp": [],
+        "el_bin_label": [],
+        "state": [],
+        "left": [],
+        "right": [],
+        "top": [],
+    }
+    pdf_rows = {"hp": [], "el_bin_label": [], "state": [], "x": [], "y": []}
+    stat_rows = {
+        "hp": [],
+        "el_bin_label": [],
+        "state": [],
+        "n": [],
+        "mu": [],
+        "sigma": [],
+    }
 
     for (hp, lab, st), sub in dfp.groupby(["hp", "el_bin_label", "state"], sort=False):
         # convert to str for JS matching (also handles Int64 and categorical)
-        hp = str(hp); lab = str(lab); st = str(st)
+        hp = str(hp)
+        lab = str(lab)
+        st = str(st)
 
         x = sub["stiffness_N_per_um"].to_numpy(float)
         x = x[np.isfinite(x)]
@@ -157,7 +183,9 @@ def bokeh_stiffness_gaussian_by_elevation(
 
     hp_sel = Select(title="HP", value=hp0, options=hp_list)
     st_sel = Select(title="State", value=st0, options=state_list)
-    el_sel = Select(title=f"Elevation bin (deg, width={w})", value=bin0, options=bins_available)
+    el_sel = Select(
+        title=f"Elevation bin (deg, width={w})", value=bin0, options=bins_available
+    )
 
     # init_current (Python)
     def init_current(hp_val: str, bin_val: str, st_val: str):
@@ -167,20 +195,39 @@ def bokeh_stiffness_gaussian_by_elevation(
 
         left, right, top = [], [], []
         for i in range(len(hA.get("left", []))):
-            if hA["hp"][i] == hp_val and hA["el_bin_label"][i] == bin_val and hA["state"][i] == st_val:
-                left.append(hA["left"][i]); right.append(hA["right"][i]); top.append(hA["top"][i])
+            if (
+                hA["hp"][i] == hp_val
+                and hA["el_bin_label"][i] == bin_val
+                and hA["state"][i] == st_val
+            ):
+                left.append(hA["left"][i])
+                right.append(hA["right"][i])
+                top.append(hA["top"][i])
         src_hist.data = {"left": left, "right": right, "top": top}
 
         xx, yy = [], []
         for i in range(len(pA.get("x", []))):
-            if pA["hp"][i] == hp_val and pA["el_bin_label"][i] == bin_val and pA["state"][i] == st_val:
-                xx.append(pA["x"][i]); yy.append(pA["y"][i])
+            if (
+                pA["hp"][i] == hp_val
+                and pA["el_bin_label"][i] == bin_val
+                and pA["state"][i] == st_val
+            ):
+                xx.append(pA["x"][i])
+                yy.append(pA["y"][i])
         src_pdf.data = {"x": xx, "y": yy}
 
-        n = 0; mu = np.nan; sigma = np.nan
+        n = 0
+        mu = np.nan
+        sigma = np.nan
         for i in range(len(sA.get("hp", []))):
-            if sA["hp"][i] == hp_val and sA["el_bin_label"][i] == bin_val and sA["state"][i] == st_val:
-                n = sA["n"][i]; mu = sA["mu"][i]; sigma = sA["sigma"][i]
+            if (
+                sA["hp"][i] == hp_val
+                and sA["el_bin_label"][i] == bin_val
+                and sA["state"][i] == st_val
+            ):
+                n = sA["n"][i]
+                mu = sA["mu"][i]
+                sigma = sA["sigma"][i]
                 break
 
         if np.isfinite(mu) and np.isfinite(sigma):
@@ -207,24 +254,41 @@ def bokeh_stiffness_gaussian_by_elevation(
     p.yaxis.axis_label = "density"
     p.grid.grid_line_alpha = 0.3
 
-    r_bar = p.quad(left="left", right="right", bottom=0, top="top",
-                   source=src_hist, line_alpha=0.2, fill_alpha=0.35,
-                   legend_label="Histogram (density)")
+    r_bar = p.quad(
+        left="left",
+        right="right",
+        bottom=0,
+        top="top",
+        source=src_hist,
+        line_alpha=0.2,
+        fill_alpha=0.35,
+        legend_label="Histogram (density)",
+    )
     r_pdf = p.line("x", "y", source=src_pdf, line_width=3, legend_label="Normal fit")
 
-    p.add_tools(HoverTool(renderers=[r_bar], tooltips=[
-        ("bin", "@left{0.00} – @right{0.00}"),
-        ("density", "@top{0.000}"),
-    ]))
+    p.add_tools(
+        HoverTool(
+            renderers=[r_bar],
+            tooltips=[
+                ("bin", "@left{0.00} – @right{0.00}"),
+                ("density", "@top{0.000}"),
+            ],
+        )
+    )
     p.legend.location = "top_right"
 
     # callback JS: when any selector changes, update the histogram, PDF, and stats info by filtering the precomputed data
     cb = CustomJS(
         args=dict(
-            h_all=src_hist_all, p_all=src_pdf_all, s_all=src_stat_all,
-            h=src_hist, p=src_pdf,
-            hp_sel=hp_sel, el_sel=el_sel, st_sel=st_sel,
-            info=info
+            h_all=src_hist_all,
+            p_all=src_pdf_all,
+            s_all=src_stat_all,
+            h=src_hist,
+            p=src_pdf,
+            hp_sel=hp_sel,
+            el_sel=el_sel,
+            st_sel=st_sel,
+            info=info,
         ),
         code="""
         const hp = hp_sel.value;
@@ -273,7 +337,7 @@ def bokeh_stiffness_gaussian_by_elevation(
         } else {
           info.text = `<b>HP=${hp}</b> | Elev bin <b>${lab}°</b> | <b>${st}</b> — n=${n} (σ inválida / insuficiente)`;
         }
-        """
+        """,
     )
 
     hp_sel.js_on_change("value", cb)
