@@ -3,14 +3,14 @@
 """
 Extraction of physical properties from M1M3 hardpoint test data.
 
-For each test group identified by scan_status, it downloads force, displacement, 
-and EFD states, segments by test state 
+For each test group identified by scan_status, it downloads force, displacement,
+and EFD states, segments by test state
 (MOVINGNEGATIVE, TESTINGPOSITIVE, TESTINGNEGATIVE) and extracts:
   - Basic statistics of force and displacement.
   - Stiffness (N/µm) via linear fit forced through the origin.
   - Breakaway force and displacement (point of detachment).
   - Elevation and azimuth angles of the mount during the test.
-  - Classification of breakaway force within acceptance bands.  
+  - Classification of breakaway force within acceptance bands.
 """
 
 import os
@@ -22,33 +22,36 @@ from lsst.summit.utils.efdUtils import makeEfdClient
 from lsst.ts.xml.enums.MTM1M3 import HardpointTest
 
 from .utils import ensure_utc_index, ensure_dir
+from .filters_valid_days import filter_valid_days_all_6hp_both_states
 
 
 # Constants
 BASE_TOPIC = "lsst.sal.MTM1M3"
-N_HP = 6           # Amount of hardpoints
-M_TO_UM = 1e6      # Convertion factor: meters → micrometers
+N_HP = 6  # Amount of hardpoints
+M_TO_UM = 1e6  # Convertion factor: meters → micrometers
 
 # Adjustment parameters
-BREAKAWAY_DISP_UM = 1.0        # Displacement gaps (µm) to detect breakaway.
-BREAKAWAY_MIN_CONSEC = 3       # Consecutive samples above threshold to confirm breakaway.
-DISP_FIT_UM = 100              # Displacement window maximum (µm) for stiffness fit.
-FIT_POINTS_AROUND_ZERO = 20    # Points around zero for linear fit.
+BREAKAWAY_DISP_UM = 1.0  # Displacement gaps (µm) to detect breakaway.
+BREAKAWAY_MIN_CONSEC = 3  # Consecutive samples above threshold to confirm breakaway.
+DISP_FIT_UM = 100  # Displacement window maximum (µm) for stiffness fit.
+FIT_POINTS_AROUND_ZERO = 20  # Points around zero for linear fit.
 
 # Stiffness quality filters
 STIFFNESS_NEG_CLAMP_EPS = -0.5  # Small negatives [-eps, 0) rounded to 0.0.
-STIFFNESS_MAX_ABS = 100.0       # Stiffness with |k| > max discard like outlier (→ NaN).
+STIFFNESS_MAX_ABS = 100.0  # Stiffness with |k| > max discard like outlier (→ NaN).
 
 # Breakaway force bands limits in Newtons
-COMP_BAND_N = (2981.0, 3959.0)   # Compression band
-TENS_BAND_N = (-4420.0, -3456.0) # Tension band
+COMP_BAND_N = (2981.0, 3959.0)  # Compression band
+TENS_BAND_N = (-4420.0, -3456.0)  # Tension band
 
 # Valid states for stiffness calculation
-STIFF_OK_STATES: frozenset = frozenset({
-    "TESTINGPOSITIVE",
-    "TESTINGNEGATIVE",
-    "MOVINGNEGATIVE",
-})
+STIFF_OK_STATES: frozenset = frozenset(
+    {
+        "TESTINGPOSITIVE",
+        "TESTINGNEGATIVE",
+        "MOVINGNEGATIVE",
+    }
+)
 
 
 # EFD download functions.
@@ -83,7 +86,7 @@ async def fetch_force_disp_all(efd_client, t0, t1) -> pd.DataFrame:
     """
     Downloads measured force and displacement of all hardpoints in [t0, t1].
 
-    Displacement is converted from meters to micrometers (factor M_TO_UM). 
+    Displacement is converted from meters to micrometers (factor M_TO_UM).
     The resulting columns are 'measuredForce{i}' and 'displacement{i}'.
 
     Args:
@@ -121,7 +124,7 @@ async def fetch_el_az_window(efd_client, t0, t1) -> tuple[float, float]:
     """
     Downloads the median elevation and azimuth of the mount in [t0, t1].
 
-    The median is used to mitigate the effect of outliers during the window. 
+    The median is used to mitigate the effect of outliers during the window.
     Returns (NaN, NaN) if no data is available or if any query error occurs.
 
     Args:
@@ -134,12 +137,14 @@ async def fetch_el_az_window(efd_client, t0, t1) -> tuple[float, float]:
     """
     try:
         el = await efd_client.select_time_series(
-            "lsst.sal.MTMount.elevation", ["actualPosition"],
+            "lsst.sal.MTMount.elevation",
+            ["actualPosition"],
             Time(t0.to_pydatetime(), scale="utc"),
             Time(t1.to_pydatetime(), scale="utc"),
         )
         az = await efd_client.select_time_series(
-            "lsst.sal.MTMount.azimuth", ["actualPosition"],
+            "lsst.sal.MTMount.azimuth",
+            ["actualPosition"],
             Time(t0.to_pydatetime(), scale="utc"),
             Time(t1.to_pydatetime(), scale="utc"),
         )
@@ -149,21 +154,28 @@ async def fetch_el_az_window(efd_client, t0, t1) -> tuple[float, float]:
     el = ensure_utc_index(el) if (el is not None and not el.empty) else pd.DataFrame()
     az = ensure_utc_index(az) if (az is not None and not az.empty) else pd.DataFrame()
 
-    el_deg = float(pd.to_numeric(el["actualPosition"], errors="coerce").median()) if "actualPosition" in el else np.nan
-    az_deg = float(pd.to_numeric(az["actualPosition"], errors="coerce").median()) if "actualPosition" in az else np.nan
+    el_deg = (
+        float(pd.to_numeric(el["actualPosition"], errors="coerce").median())
+        if "actualPosition" in el
+        else np.nan
+    )
+    az_deg = (
+        float(pd.to_numeric(az["actualPosition"], errors="coerce").median())
+        if "actualPosition" in az
+        else np.nan
+    )
     return (el_deg, az_deg)
 
 
 # State segmentation and slicing functions.
 
-def build_state_segments(
-    status_series: pd.Series, t0, t1
-) -> list[tuple]:
+
+def build_state_segments(status_series: pd.Series, t0, t1) -> list[tuple]:
     """
     Builds contiguous state segments from a series of temporal states.
 
     The output segment is a tuple list of (t_start, t_end, state) covering the window [t0, t1].
-    Changes in state are detected by comparing each value with the previous one. 
+    Changes in state are detected by comparing each value with the previous one.
     The endpoints are extended to t0 and t1 to cover the entire window of interest.
 
     Args:
@@ -202,17 +214,15 @@ def build_state_segments(
     return segs
 
 
-def pick_longest_segment(
-    segs: list[tuple], target_state: int
-) -> tuple | None:
+def pick_longest_segment(segs: list[tuple], target_state: int) -> tuple | None:
     """
     Selection of the longest segment corresponding to 'target_state'.
 
-    Use for choosing the most representative phase of each test state 
+    Use for choosing the most representative phase of each test state
     when there are multiple transitions in a window.
 
     Args:
-        segs: Tuple list (t_start, t_end, state) generated by build_state_segments. 
+        segs: Tuple list (t_start, t_end, state) generated by build_state_segments.
         target_state: Integer searched state values (value of the enum HardpointTest).
 
     Returns:
@@ -228,7 +238,7 @@ def slice_by_segment(
     """
     Cut the DataFrame to the interval defined by 'seg', with a margin 'pad_s'.
 
-    Margin 'pad_s' in seconds is added to both ends of the segment to avoid losing samples 
+    Margin 'pad_s' in seconds is added to both ends of the segment to avoid losing samples
     at the edge of the segment due to resolution differences between EFD topics.
 
     Args:
@@ -248,6 +258,7 @@ def slice_by_segment(
 
 
 # Stiffness fit functions.
+
 
 def slope_through_origin(x: np.ndarray, y: np.ndarray) -> float:
     """
@@ -270,11 +281,11 @@ def slope_through_origin(x: np.ndarray, y: np.ndarray) -> float:
 
 def center_to_origin(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Traslates force and displacement data so that the point of minimum 
+    Traslates force and displacement data so that the point of minimum
     absolute force is at the origin (0, 0).
 
-    This eliminates the static offset before stiffness fitting, allowing 
-    the regression forced through the origin to be applied correctly.  
+    This eliminates the static offset before stiffness fitting, allowing
+    the regression forced through the origin to be applied correctly.
 
     Args:
         df: Dataframe with 'force' and 'displacement' columns, temporal index.
@@ -300,10 +311,10 @@ def stiffness_from_df(df_fd: pd.DataFrame) -> float:
     Pipeline of three steps:
       1. Centers the data at the point of minimum absolute force (see center_to_origin).
       2. Filters points within ±DISP_FIT_UM µm to exclude the non-linear regime.
-      3. Fits the line forced through the origin using ±FIT_POINTS_AROUND_ZERO 
+      3. Fits the line forced through the origin using ±FIT_POINTS_AROUND_ZERO
       samples around zero (most linear zone).
 
-    Requires at least 20 total samples in the input DataFrame and at least 5 points 
+    Requires at least 20 total samples in the input DataFrame and at least 5 points
     in the fitting window to return a valid stiffness.
 
     Args:
@@ -333,19 +344,20 @@ def stiffness_from_df(df_fd: pd.DataFrame) -> float:
 
 # Breakaway detection function.
 
+
 def find_breakaway_index(displacement_um: pd.Series) -> int | None:
     """
-    Detects the index of the breakaway point in the displacement series.
+        Detects the index of the breakaway point in the displacement series.
 
-    Breakaway is defined as the first instant where at least BREAKAWAY_MIN_CONSEC consecutive samples
-    have a displacement increment greater than BREAKAWAY_DISP_UM µm.
+        Breakaway is defined as the first instant where at least BREAKAWAY_MIN_CONSEC consecutive samples
+        have a displacement increment greater than BREAKAWAY_DISP_UM µm.
 
-    Args:
-        Displacement (µm) series with temporal index.
-)
-    Returns:
-        Integer index (position) of the first breakaway point,
-        or None if no breakaway is detected.
+        Args:
+            Displacement (µm) series with temporal index.
+    )
+        Returns:
+            Integer index (position) of the first breakaway point,
+            or None if no breakaway is detected.
     """
     if displacement_um is None or displacement_um.empty:
         return None
@@ -369,7 +381,8 @@ def find_breakaway_index(displacement_um: pd.Series) -> int | None:
     return None
 
 
-# Statistics calculation function. 
+# Statistics calculation function.
+
 
 def force_disp_stats(df_fd: pd.DataFrame) -> dict:
     """
@@ -385,8 +398,12 @@ def force_disp_stats(df_fd: pd.DataFrame) -> dict:
     """
     empty = dict(
         n=0,
-        force_max=np.nan, force_min=np.nan, force_mean=np.nan,
-        disp_ptp=np.nan, disp_max=np.nan, disp_min=np.nan,
+        force_max=np.nan,
+        force_min=np.nan,
+        force_mean=np.nan,
+        disp_ptp=np.nan,
+        disp_max=np.nan,
+        disp_min=np.nan,
     )
     if df_fd is None or df_fd.empty:
         return empty
@@ -407,7 +424,8 @@ def force_disp_stats(df_fd: pd.DataFrame) -> dict:
     )
 
 
-# Principal pipeline function. 
+# Principal pipeline function.
+
 
 async def extract_features_for_groups(
     df_groups: pd.DataFrame,
@@ -428,7 +446,7 @@ async def extract_features_for_groups(
       - For each hardpoint and state, calculates stiffness, basic statistics, and breakaway point.
       - Classifies the breakaway force within acceptance bands.
 
-    If the output CSV already exists and 'overwrite' is False, it loads 
+    If the output CSV already exists and 'overwrite' is False, it loads
     the features directly from the CSV instead of recomputing.
 
     Args:
@@ -438,9 +456,9 @@ async def extract_features_for_groups(
         csv_name: Output CSV file name.
         debug: If True, prints progress to console.
         efd_name: Name of the EFD to connect for data download.
-        include_mount_angles: If True, downloads elevation and azimuth of the mount. 
+        include_mount_angles: If True, downloads elevation and azimuth of the mount.
                               If False, these features will be set to NaN.
-        overwrite: If True, forces recomputation even if the output CSV already exists. 
+        overwrite: If True, forces recomputation even if the output CSV already exists.
                    If False, loads from CSV if available.
 
     Returns:
@@ -464,9 +482,9 @@ async def extract_features_for_groups(
     g["t_end_utc"] = pd.to_datetime(g["t_end_utc"], utc=True)
 
     state_map = {
-        "MOVINGNEGATIVE":   int(HardpointTest.MOVINGNEGATIVE),
-        "TESTINGPOSITIVE":  int(HardpointTest.TESTINGPOSITIVE),
-        "TESTINGNEGATIVE":  int(HardpointTest.TESTINGNEGATIVE),
+        "MOVINGNEGATIVE": int(HardpointTest.MOVINGNEGATIVE),
+        "TESTINGPOSITIVE": int(HardpointTest.TESTINGPOSITIVE),
+        "TESTINGNEGATIVE": int(HardpointTest.TESTINGNEGATIVE),
     }
 
     for idx, gr in enumerate(g.itertuples(index=False)):
@@ -496,7 +514,11 @@ async def extract_features_for_groups(
             fcol = f"measuredForce{i}"
             dcol = f"displacement{i}"
             scol = f"testState{i}"
-            if fcol not in act_all.columns or dcol not in act_all.columns or scol not in sts.columns:
+            if (
+                fcol not in act_all.columns
+                or dcol not in act_all.columns
+                or scol not in sts.columns
+            ):
                 continue
 
             hp_fd_all = (
@@ -508,7 +530,9 @@ async def extract_features_for_groups(
                 continue
 
             segs = build_state_segments(sts[scol], t0, t1)
-            seg_by_state = {sv: pick_longest_segment(segs, sv) for sv in state_map.values()}
+            seg_by_state = {
+                sv: pick_longest_segment(segs, sv) for sv in state_map.values()
+            }
 
             for state_name, state_val in state_map.items():
                 seg = seg_by_state.get(state_val)
@@ -525,50 +549,60 @@ async def extract_features_for_groups(
                 if np.isfinite(k_use) and (STIFFNESS_NEG_CLAMP_EPS <= k_use < 0.0):
                     k_use = 0.0
                 # Discard significant negative or positive stiffness values (inconsistent data)
-                elif np.isfinite(k_use) and ((k_use < STIFFNESS_NEG_CLAMP_EPS) or (k_use > STIFFNESS_MAX_ABS)):
+                elif np.isfinite(k_use) and (
+                    (k_use < STIFFNESS_NEG_CLAMP_EPS) or (k_use > STIFFNESS_MAX_ABS)
+                ):
                     k_use = np.nan
 
                 ba_idx = find_breakaway_index(df_state["displacement"])
-                ba_disp  = float(df_state["displacement"].iloc[ba_idx]) if ba_idx is not None else np.nan
-                ba_force = float(df_state["force"].iloc[ba_idx])        if ba_idx is not None else np.nan
-                ba_time  = df_state.index[ba_idx]                       if ba_idx is not None else pd.NaT
+                ba_disp = (
+                    float(df_state["displacement"].iloc[ba_idx])
+                    if ba_idx is not None
+                    else np.nan
+                )
+                ba_force = (
+                    float(df_state["force"].iloc[ba_idx])
+                    if ba_idx is not None
+                    else np.nan
+                )
+                ba_time = df_state.index[ba_idx] if ba_idx is not None else pd.NaT
 
-                 # Real segment times for this HP+state
-                seg_t0  = seg[0] if seg is not None else pd.NaT
-                seg_t1  = seg[1] if seg is not None else pd.NaT
-                dur_s   = (seg[1] - seg[0]).total_seconds() if seg is not None else np.nan
+                # Real segment times for this HP+state
+                seg_t0 = seg[0] if seg is not None else pd.NaT
+                seg_t1 = seg[1] if seg is not None else pd.NaT
+                dur_s = (seg[1] - seg[0]).total_seconds() if seg is not None else np.nan
 
-
-                rows.append({
-                    "date":                  date_str,
-                    "month":                 date_str[:7],
-                    "group_id":              group_id,
-                    "group_t_start_utc":     t0,    # window of the full test event
-                    "group_t_end_utc":       t1,    # window of the full test event
-                    "hp":                    hp,
-                    "state":                 state_name,
-                    "t_start_utc":           seg_t0,  # real start of this HP+state
-                    "t_end_utc":             seg_t1,  # real end   of this HP+state
-                    "state_duration_s":      dur_s,
-                    "stiffness_raw_N_per_um": k_raw,
-                    "stiffness_N_per_um":    k_use,
-                    "stiff_ok": bool(
-                        (state_name in ("TESTINGPOSITIVE", "TESTINGNEGATIVE"))
-                        and np.isfinite(k_use)
-                        and (0.0 <= k_use <= STIFFNESS_MAX_ABS)
-                    ),
-                    **stats,
-                    "breakaway_time_utc":   ba_time,
-                    "breakaway_force_N":    ba_force,
-                    "breakaway_disp_um":    ba_disp,
-                    "elevation_deg":        el_deg,
-                    "azimuth_deg":          az_deg,
-                })
+                rows.append(
+                    {
+                        "date": date_str,
+                        "month": date_str[:7],
+                        "group_id": group_id,
+                        "group_t_start_utc": t0,  # window of the full test event
+                        "group_t_end_utc": t1,  # window of the full test event
+                        "hp": hp,
+                        "state": state_name,
+                        "t_start_utc": seg_t0,  # real start of this HP+state
+                        "t_end_utc": seg_t1,  # real end   of this HP+state
+                        "state_duration_s": dur_s,
+                        "stiffness_N_per_um": k_use,
+                        "stiff_ok": bool(
+                            (state_name in ("TESTINGPOSITIVE", "TESTINGNEGATIVE"))
+                            and np.isfinite(k_use)
+                            and (0.0 <= k_use <= STIFFNESS_MAX_ABS)
+                        ),
+                        **stats,
+                        "breakaway_time_utc": ba_time,
+                        "breakaway_force_N": ba_force,
+                        "breakaway_disp_um": ba_disp,
+                        "elevation_deg": el_deg,
+                        "azimuth_deg": az_deg,
+                    }
+                )
 
     df_feat = pd.DataFrame(rows)
 
     # Acceptance band classification based on breakaway force.
-    # in_band: True if breakaway force falls within expected compression or tension band. 
+    # in_band: True if breakaway force falls within expected compression or tension band.
     # NaN values are treated as False.
     if "breakaway_force_N" in df_feat.columns:
         f = pd.to_numeric(df_feat["breakaway_force_N"], errors="coerce")
@@ -578,6 +612,15 @@ async def extract_features_for_groups(
     in_comp = (f >= COMP_BAND_N[0]) & (f <= COMP_BAND_N[1])
     in_tens = (f >= TENS_BAND_N[0]) & (f <= TENS_BAND_N[1])
     df_feat["in_band"] = (in_comp | in_tens).fillna(False).astype(bool)
+
+    # Mark valid days: days where all 6 HPs have both TESTINGPOSITIVE and
+    # TESTINGNEGATIVE states after physical filters (elevation, stiffness, stiff_ok).
+    _, day_summary = filter_valid_days_all_6hp_both_states(
+        df_feat,
+        return_day_summary=True,
+    )
+    valid_days: set = set(day_summary.loc[day_summary["is_valid_day"], "date"])
+    df_feat["valid_day"] = df_feat["date"].isin(valid_days)
 
     df_feat.to_csv(outpath, index=False)
     if debug:

@@ -3,8 +3,8 @@
 """
 Scan M1M3's Harpoints test.
 
-Identify time intervals when tests were executed, 
-aligning EFD commands with actual system states to define 
+Identify time intervals when tests were executed,
+aligning EFD commands with actual system states to define
 precise start and end windows per activity group.
 """
 
@@ -28,11 +28,13 @@ BASE_TOPIC = "lsst.sal.MTM1M3"
 N_HP = 6
 
 # Define active states of the HardpointTest enum as a frozenset for efficient membership testing.
-ACTIVE_STATES_DEFAULT: frozenset = frozenset({
-    int(HardpointTest.MOVINGNEGATIVE),
-    int(HardpointTest.TESTINGPOSITIVE),
-    int(HardpointTest.TESTINGNEGATIVE),
-})
+ACTIVE_STATES_DEFAULT: frozenset = frozenset(
+    {
+        int(HardpointTest.MOVINGNEGATIVE),
+        int(HardpointTest.TESTINGPOSITIVE),
+        int(HardpointTest.TESTINGNEGATIVE),
+    }
+)
 
 
 async def fetch_test_commands_range(
@@ -41,7 +43,7 @@ async def fetch_test_commands_range(
     """
     Download hardpoint test command starts in the range [t0, t1].
 
-    Consult the 'command_testHardpoint' topic of the EFD and return the actuator involved in each command. 
+    Consult the 'command_testHardpoint' topic of the EFD and return the actuator involved in each command.
     Returns an empty DataFrame if there are no data.
 
     Args:
@@ -97,7 +99,7 @@ def align_to_status_index(
     """
     Find the first timestamp in the status DataFrame index that is >= t_ref.
 
-    Use this to align the reference time of a command with the actual index of the 
+    Use this to align the reference time of a command with the actual index of the
     status DataFrame, which may have a different resolution.
 
     Args:
@@ -134,8 +136,8 @@ def compute_end_time_from_status(
     """
     Determine the end time of a test based on the actual states from the EFD.
 
-    Resample the states at the 'sample' interval, identify the last instant when any hardpoint 
-    was active, and add 'end_buffer' as a margin at the end. The search is limited to 'max_duration' 
+    Resample the states at the 'sample' interval, identify the last instant when any hardpoint
+    was active, and add 'end_buffer' as a margin at the end. The search is limited to 'max_duration'
     from 'start_time' to avoid excessively long windows.
 
     Detection of active states is vectorized with 'isin()' for efficiency.
@@ -143,7 +145,7 @@ def compute_end_time_from_status(
     Args:
         sts: States dataframe with UTC index.
         start_time: Test beginning.
-        hp_indices: Hardpoints index to monitor (0-based). 
+        hp_indices: Hardpoints index to monitor (0-based).
         active_states: Set of int values corresponding to active states in the HardpointTest enum.
                        Use ACTIVE_STATES_DEFAULT for default.
         max_duration: Maxime duration to search forward from start_time.
@@ -156,14 +158,19 @@ def compute_end_time_from_status(
     if sts is None or sts.empty:
         return None
 
-    active_states = ACTIVE_STATES_DEFAULT if active_states is None else frozenset(int(x) for x in active_states)
+    active_states = (
+        ACTIVE_STATES_DEFAULT
+        if active_states is None
+        else frozenset(int(x) for x in active_states)
+    )
     cols = [f"testState{i}" for i in hp_indices if f"testState{i}" in sts.columns]
     if not cols:
         return None
 
     start_time = pd.Timestamp(start_time)
     start_time = (
-        start_time.tz_localize("UTC") if start_time.tzinfo is None
+        start_time.tz_localize("UTC")
+        if start_time.tzinfo is None
         else start_time.tz_convert("UTC")
     )
 
@@ -216,7 +223,7 @@ async def scan_days_with_tests_real_status(
       1. Download test commands and actual EFD states.
       2. Group commands by time gaps ('group_gap').
       3. Align each group with the status index and determine the real test window.
-      4. Deduplicate already processed windows with 'seen'. 
+      4. Deduplicate already processed windows with 'seen'.
 
     If the output CSVs already exist and 'overwrite=False', it loads them directly.
 
@@ -242,10 +249,19 @@ async def scan_days_with_tests_real_status(
         end_date = today_utc_str()
 
     ensure_dir(outdir)
-    p_days = os.path.join(outdir, f"days_with_tests_status_{start_date}_to_{end_date}.csv")
-    p_groups = os.path.join(outdir, f"groups_with_tests_status_{start_date}_to_{end_date}.csv")
+    p_days = os.path.join(
+        outdir, f"days_with_tests_status_{start_date}_to_{end_date}.csv"
+    )
+    p_groups = os.path.join(
+        outdir, f"groups_with_tests_status_{start_date}_to_{end_date}.csv"
+    )
 
-    if save_csv and (not overwrite) and os.path.exists(p_days) and os.path.exists(p_groups):
+    if (
+        save_csv
+        and (not overwrite)
+        and os.path.exists(p_days)
+        and os.path.exists(p_groups)
+    ):
         if debug:
             print("Loading CSVs existing:")
             print(" -", p_days)
@@ -255,15 +271,17 @@ async def scan_days_with_tests_real_status(
     efd_client = makeEfdClient(efd_name)
 
     start = pd.Timestamp(f"{start_date} 00:00:00", tz="UTC")
-    end   = pd.Timestamp(f"{end_date} 23:59:59", tz="UTC")
+    end = pd.Timestamp(f"{end_date} 23:59:59", tz="UTC")
 
     if debug:
         print(f"Scan with status: {start} -> {end}")
 
     group_rows = []
-    seen = set()  # Avoid duplicates across chunks (t0, t1, hp_indices). 
+    seen = set()  # Avoid duplicates across chunks (t0, t1, hp_indices).
 
-    for chunk_start, chunk_end in chunk_ranges_utc(start, end, days=chunk_days, overlap_hours=overlap_hours):
+    for chunk_start, chunk_end in chunk_ranges_utc(
+        start, end, days=chunk_days, overlap_hours=overlap_hours
+    ):
         if debug:
             print(f"\nChunk: {chunk_start} -> {chunk_end}")
 
@@ -279,29 +297,32 @@ async def scan_days_with_tests_real_status(
 
         cmd = group_by_gaps(cmd, group_gap)
 
-        #Sumarize commands by group_id: reference time, number of commands and unique HPs.
+        # Sumarize commands by group_id: reference time, number of commands and unique HPs.
         gsum = (
             cmd.reset_index()
-               .groupby("group_id")
-               .agg(
-                   reference_time=("index", "min"),
-                   n_cmds=("group_id", "size"),
-                   #Optimized: sorted unique values directly from the Series without creating a new one in the lambda.
-                   uniq_hp=("hardpointActuator", lambda s: sorted(s.dropna().unique())),
-               )
-               .reset_index()
+            .groupby("group_id")
+            .agg(
+                reference_time=("index", "min"),
+                n_cmds=("group_id", "size"),
+                # Optimized: sorted unique values directly from the Series without creating a new one in the lambda.
+                uniq_hp=("hardpointActuator", lambda s: sorted(s.dropna().unique())),
+            )
+            .reset_index()
         )
 
         for _, r in gsum.iterrows():
             g_id = int(r["group_id"])
             t_ref = pd.Timestamp(r["reference_time"])
-            t_ref = t_ref.tz_localize("UTC") if t_ref.tzinfo is None else t_ref.tz_convert("UTC")
+            t_ref = (
+                t_ref.tz_localize("UTC")
+                if t_ref.tzinfo is None
+                else t_ref.tz_convert("UTC")
+            )
 
             uniq_hp = r["uniq_hp"] if isinstance(r["uniq_hp"], list) else []
-            hp_indices = (
-                [int(hp) - 1 for hp in uniq_hp if 1 <= int(hp) <= N_HP]
-                or list(range(N_HP))
-            )
+            hp_indices = [
+                int(hp) - 1 for hp in uniq_hp if 1 <= int(hp) <= N_HP
+            ] or list(range(N_HP))
 
             # Aling the command reference time with the status index to find the actual start time of the test.
             t0 = align_to_status_index(sts, t_ref)
@@ -309,8 +330,12 @@ async def scan_days_with_tests_real_status(
                 continue
 
             t1 = compute_end_time_from_status(
-                sts=sts, start_time=t0, hp_indices=hp_indices,
-                max_duration=max_duration, sample=sample, end_buffer=end_buffer,
+                sts=sts,
+                start_time=t0,
+                hp_indices=hp_indices,
+                max_duration=max_duration,
+                sample=sample,
+                end_buffer=end_buffer,
             )
             if t1 is None or t1 <= t0:
                 continue
@@ -320,16 +345,22 @@ async def scan_days_with_tests_real_status(
                 continue
             seen.add(key)
 
-            group_rows.append({
-                "date": t0.strftime("%Y-%m-%d"),
-                "group_id": g_id,
-                "t_start_utc": t0,
-                "t_end_utc": t1,
-                "duration_s": (t1 - t0).total_seconds(),
-                "n_cmds": int(r["n_cmds"]),
-                "uniq_hp": ",".join(map(str, uniq_hp)) if isinstance(uniq_hp, list) else str(uniq_hp),
-                "hp_indices": ",".join(str(i) for i in hp_indices),
-            })
+            group_rows.append(
+                {
+                    "date": t0.strftime("%Y-%m-%d"),
+                    "group_id": g_id,
+                    "t_start_utc": t0,
+                    "t_end_utc": t1,
+                    "duration_s": (t1 - t0).total_seconds(),
+                    "n_cmds": int(r["n_cmds"]),
+                    "uniq_hp": (
+                        ",".join(map(str, uniq_hp))
+                        if isinstance(uniq_hp, list)
+                        else str(uniq_hp)
+                    ),
+                    "hp_indices": ",".join(str(i) for i in hp_indices),
+                }
+            )
 
     if not group_rows:
         return pd.DataFrame(), pd.DataFrame()

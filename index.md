@@ -47,7 +47,7 @@ Associated JIRA tickets and requirements with this test:
 (table-label)=
 
 ```{eval-rst}
-.. table:: Table 1. List of the Hardpoint Breakaway Tests executions
+.. table:: List of the Hardpoint Breakaway Tests executions
 
     +----------+--------+----------------------+----------+
     | elevation| azimuth| Start Time           | SALIndex |
@@ -791,6 +791,9 @@ Therefore, in this section, we analyze the historical trends of the hardpoint br
 
 In order to view graphically the above we plot a dashboard to compare the data obtain for each day with completed test. 
 
+:::{figure} #
+:name: dashboard-hp1
+
 ```{raw} html 
 <iframe 
   src="_static/dashboard_hardpoints.html" 
@@ -800,11 +803,17 @@ In order to view graphically the above we plot a dashboard to compare the data o
  </iframe> 
 ```
 
+(Top) Interactive dashboard of test days. (Bottom) Interactive dashboard of hardpoint stiffness trends since 2023.
+:::
+
 In the dashboard, the top plot shows the days with completed tests up to the present day. The y-axis represents the number of tests performed on each day. From this, we observe that in may 2023 had the highest number of tests conducted in a single day.
 
-On the other hand, the bottom plot shows how the daily mean stiffness evolves over time, modeled by Hardpoint (HP) and state. The stiffness range is between 0 and 40 N/µm. In general, we observe that stiffness values tend to become more linear over time.
+On the other hand, the bottom plot shows how the daily mean stiffness evolves over time, modeled by Hardpoint (HP) and state. In general, we observe that stiffness values tend to become more linear over time.
 
-In the next dashboard, we can see more clearly the dependence of stiffness on angle by HP. For this analysis, we considered only data with physical stiffness values and excluded approximately 115 outlier points.
+The following dashboard clearly illustrates the dependence of stiffness on the elevation angle for each HP. For this analysis, we considered only physical stiffness values. To apply the normal fit, only angle ranges that met the minimum sample size requirement (n≥10) were considered. Consequently, angles such as 45°–50° for HP2 (testing positive state), which has only 3 data points (n=3), were excluded as they do not provide enough information to obtain statistically significant results.
+
+:::{figure} #
+:name: dashboard-hp2
 
 ```{raw} html 
 <iframe 
@@ -814,35 +823,43 @@ In the next dashboard, we can see more clearly the dependence of stiffness on an
   style="border:1px solid #E0E0E0; border-radius:6px;"> 
  </iframe> 
 ```
-For elevation angles until 70 degrees for each HP is not enough points for obtain median or standar deviation by normal fit when the n minima is 10, while from 70, we can see, that for HP1 mean stiffness have a minima of 15.02 N/um at the range of 80-85 degrees with a sigma of 2.38 and the HP6 have the maxima of 31.03 N/um at 85-90 degrees with a sigma of 1.78. Moreover, in general, we can see, that for each hardpoint at more elevation angle have minor stiffness value.
 
-Respect to breakaway, in the next figure we can see when state is testing positive the points in compression band meanwhile the testing negative's points are located in tension band. The crosses represent those points that for any reason were kept out of bands. The plots show us that state testing positive have more outliers that testing negative. 
+Interactive dashboard illustrating how stiffness distribution varies in relation to angle range, categorized by state and hardpoint (HP). 
+:::
+
+Furthermore, for elevation angles up to 70 degrees, there are insufficient data points for each HP to calculate the median or standard deviation via normal fit, given our minimum requirement of n≥10.
+
+In contrast, for angles above 70°, we observe that HP1 reaches a minimum mean stiffness of 15.02 N/µm in the 80°–85° range ($\sigma$=2.38), while HP6 reaches a maximum of 31.03 N/µm in the 85°–90° range ($\sigma$=1.78). Overall, a general trend is observed: for each hardpoint, an increase in elevation angle correlates with a decrease in stiffness values.
+
+Regarding the breakaway analysis, we obtained the breakaway force (N) and displacement (µm) for each HP and state. The following figure illustrates the distribution of these values: points in the positive testing state are located within the tension band, while points in the negative testing state are situated within the compression band.
+
+The crosses represent data points that, for various reasons, fell outside these bands and were classified as outliers. The plots indicate that the positive testing state (tension) exhibits a higher frequency of outliers compared to the negative testing state (compression).
 
 ::::{subfigure}
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/Breakaway_per_hp/HP1_breakaway_force_N_vs_breakaway_disp_um_TESTINGPOSITIVE_TESTINGNEGATIVE.png
+:::{image} /_static/Breakaway_by_HP_state/HP1_breakaway_TESTINGPOSITIVE_TESTINGNEGATIVE.png
 :alt: HP1
 :::
 
-:::{image} /_static/Breakaway_per_hp/HP2_breakaway_force_N_vs_breakaway_disp_um_TESTINGPOSITIVE_TESTINGNEGATIVE.png
+:::{image} /_static/Breakaway_by_HP_state/HP2_breakaway_TESTINGPOSITIVE_TESTINGNEGATIVE.png
 :alt: HP2
 :::
 
-:::{image} /_static/Breakaway_per_hp/HP3_breakaway_force_N_vs_breakaway_disp_um_TESTINGPOSITIVE_TESTINGNEGATIVE.png
+:::{image} /_static/Breakaway_by_HP_state/HP3_breakaway_TESTINGPOSITIVE_TESTINGNEGATIVE.png
 :alt: HP3
 :::
 
-:::{image} /_static/Breakaway_per_hp/HP4_breakaway_force_N_vs_breakaway_disp_um_TESTINGPOSITIVE_TESTINGNEGATIVE.png
+:::{image} /_static/Breakaway_by_HP_state/HP4_breakaway_TESTINGPOSITIVE_TESTINGNEGATIVE.png
 :alt: HP4
 :::
 
-:::{image} /_static/Breakaway_per_hp/HP5_breakaway_force_N_vs_breakaway_disp_um_TESTINGPOSITIVE_TESTINGNEGATIVE.png
+:::{image} /_static/Breakaway_by_HP_state/HP5_breakaway_TESTINGPOSITIVE_TESTINGNEGATIVE.png
 :alt: HP5
 :::
 
-:::{image} /_static/Breakaway_per_hp/HP6_breakaway_force_N_vs_breakaway_disp_um_TESTINGPOSITIVE_TESTINGNEGATIVE.png
+:::{image} /_static/Breakaway_by_HP_state/HP6_breakaway_TESTINGPOSITIVE_TESTINGNEGATIVE.png
 :alt: HP6
 :::
 
@@ -872,7 +889,7 @@ Both plots show high stiffness values during 2023 and 2024.
 ::::
 
 Based on these observations, a more robust analysis should prioritize data from 2025 onwards. In addition, three different filters were applied to exclude zeros, non-physical values, and days with incomplete states (i.e., days containing only 'testing positive' or 'testing negative' states).
-Consequently, 149 valid days have been retained since 2025.
+Consequently, 154 valid days have been retained since 2025.
 
 The following plots illustrate how each HP changes depending on the testing state. Asymmetry between compression and tension is expected, as the piston sizes differ while the internal pressure remains equal. 
 
@@ -880,31 +897,31 @@ The following plots illustrate how each HP changes depending on the testing stat
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/breakaway_time_by_hp/breakaway_force_time_HP1.png
+:::{image} /_static/breakaway_by_hp_2025/breakaway_time_HP1.png
 :alt: HP1
 :::
 
-:::{image} /_static/breakaway_time_by_hp/breakaway_force_time_HP2.png
+:::{image} /_static/breakaway_by_hp_2025/breakaway_time_HP2.png
 :alt: HP2
 :::
 
-:::{image} /_static/breakaway_time_by_hp/breakaway_force_time_HP3.png
+:::{image} /_static/breakaway_by_hp_2025/breakaway_time_HP3.png
 :alt: HP3
 :::
 
-:::{image} /_static/breakaway_time_by_hp/breakaway_force_time_HP4.png
+:::{image} /_static/breakaway_by_hp_2025/breakaway_time_HP4.png
 :alt: HP4
 :::
 
-:::{image} /_static/breakaway_time_by_hp/breakaway_force_time_HP5.png
+:::{image} /_static/breakaway_by_hp_2025/breakaway_time_HP5.png
 :alt: HP5
 :::
 
-:::{image} /_static/breakaway_time_by_hp/breakaway_force_time_HP6.png
+:::{image} /_static/breakaway_by_hp_2025/breakaway_time_HP6.png
 :alt: HP6
 :::
 
-Breakaway Force vs. Time: Blue circles represent positive state points (tension band), and blue crosses indicate outliers located between the compression and tension bands. Orange circles represent negative state points (compression band), with orange crosses as outliers. 
+Breakaway Force vs. Time: Green circles represent positive state points (tension band), and green crosses indicate outliers located between the compression and tension bands. Blue circles represent negative state points (compression band), with blue crosses as outliers. 
 ::::
 
 When comparing the figures, the breakaway time plots show significantly fewer outliers. HP4 is the exception, showing six outliers, the highest among all units, primarily in the positive testing state.
@@ -915,46 +932,64 @@ Regarding stiffness, the overall trend for both states has become more linear fo
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/stiffness_lowess_by_hp/stiffness_lowess_HP1.png
+:::{image} /_static/stiffness_daily_by_hp_2025/daily_stiffness_HP1.png
 :alt: HP1
 :::
 
-:::{image} /_static/stiffness_lowess_by_hp/stiffness_lowess_HP2.png
+:::{image} /_static/stiffness_daily_by_hp_2025/daily_stiffness_HP2.png
 :alt: HP2
 :::
 
-:::{image} /_static/stiffness_lowess_by_hp/stiffness_lowess_HP3.png
+:::{image} /_static/stiffness_daily_by_hp_2025/daily_stiffness_HP3.png
 :alt: HP3
 :::
 
-:::{image} /_static/stiffness_lowess_by_hp/stiffness_lowess_HP4.png
+:::{image} /_static/stiffness_daily_by_hp_2025/daily_stiffness_HP4.png
 :alt: HP4
 :::
 
-:::{image} /_static/stiffness_lowess_by_hp/stiffness_lowess_HP5.png
+:::{image} /_static/stiffness_daily_by_hp_2025/daily_stiffness_HP5.png
 :alt: HP5
 :::
 
-:::{image} /_static/stiffness_lowess_by_hp/stiffness_lowess_HP6.png
+:::{image} /_static/stiffness_daily_by_hp_2025/daily_stiffness_HP6.png
 :alt: HP6
 :::
 
-Stiffness vs. Time: Transparent lines represent daily mean values for both states. Solid lines represent the stiffness trend obtained by applying a local linear regression to model the mean values.
+Stiffness vs. Time: Green and blue points represent the daily mean stiffness values for the positive (tension) and negative (compression) states, respectively. These figures clearly demonstrate the unusual behavior of HP3 and HP4, which exhibit significantly higher fluctuations compared to the other hardpoints.
 ::::
 
-If standard deviation is calculated, we can see, that HP3 and HP4 have the highest values. 
+Finally, if standard deviation is calculated, we can see, that HP3 and HP4 have the highest values. 
 
 :::{figure} _static/std_by_hp_2025.png
 :alt: STD
+
 Standard deviation for each hp since 2025.
 :::
- 
 
+(table-std-hp)=
+
+```{eval-rst}
+.. table:: Standard deviation for each HP for state.
+ 
+    | HP | $\sigma$ Testing Negative | $\sigma$ Testing Positive |
+    |:--:|:-------------------------:|:-------------------------:|
+    |  1 |           2.032           |           1.677           |
+    |  2 |           1.646           |           2.445           |
+    |  3 |           4.012           |           4.093           |
+    |  4 |           3.764           |           3.673           |
+    |  5 |           0.573           |           1.321           |
+    |  6 |           2.288           |           2.024           |
+
+```
 
 ## Summary
 
+The historical analysis of the M1M3 breakaway hardpoint tests leads to the following findings:
 
-### Requirment discussion
+1. Data Representativeness: Data collected prior to 2025 is considered non-representative. From 2025 onwards, the data is reliable and should be used for behavioral modeling.
+2. Angular Sensitivity (HP2 & HP5): HP2 and HP5 exhibit higher instability at elevation angles below 60°. While this behavior was clearly visible in pre-2025 datasets, there is currently insufficient data in the recent logs to confirm if this trend persists.
+3. Anomalous Fluctuations (HP3 & HP4): Unexpectedly, HP3 and HP4 show significantly higher dispersion and fluctuations compared to the other hardpoints. It is necessary to analyze this behavior in detail and incorporate additional parameters that may be affecting the system's performance.
 
 ## References
 

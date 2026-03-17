@@ -29,7 +29,8 @@ FIG_WIDTH_PER_MONTH = 0.6
 
 # Preprocessing and helper functions
 
-def _prep_filtered(
+
+def prep_filtered(
     df: pd.DataFrame,
     *,
     time_col: str,
@@ -92,7 +93,7 @@ def clean_numeric(d: pd.DataFrame, col: str) -> pd.DataFrame:
     Convert 'col' to numeric and drop rows with NaN, infinities or null '_t'.
 
     Args:
-        d: DataFrame with '_t' column already created by _prep_filtered.
+        d: DataFrame with '_t' column already created by prep_filtered.
         col: Name of the numeric column to clean.
 
     Returns:
@@ -149,9 +150,7 @@ def compute_color_limits(
     )
 
 
-def build_pivot(
-    d: pd.DataFrame, stiffness_col: str, agg: str
-) -> pd.DataFrame:
+def build_pivot(d: pd.DataFrame, stiffness_col: str, agg: str) -> pd.DataFrame:
     """
     Build the HP x Month pivot table for the heatmap.
 
@@ -170,19 +169,17 @@ def build_pivot(
     d = d.copy()
     d["month"] = d["_t"].dt.strftime("%Y-%m")
 
-    pivot = (
-        d.pivot_table(
-            index="hp",
-            columns="month",
-            values=stiffness_col,
-            aggfunc=aggfunc,
-        )
-        .sort_index()
-    )
+    pivot = d.pivot_table(
+        index="hp",
+        columns="month",
+        values=stiffness_col,
+        aggfunc=aggfunc,
+    ).sort_index()
     return pivot.reindex(sorted(pivot.columns), axis=1)
 
 
 # Main function
+
 
 def plot_monthly_heatmap_stiffness(
     df: pd.DataFrame,
@@ -202,51 +199,51 @@ def plot_monthly_heatmap_stiffness(
     output_dir: str = "outputs",
 ) -> str | Figure | None:
     """
-    Generate a monthly stiffness heatmap with Hardpoint x Month axes.
+        Generate a monthly stiffness heatmap with Hardpoint x Month axes.
 
-    Each cell color represents the aggregated stiffness
-    of all tests for that HP in that month, after applying quality filters.
+        Each cell color represents the aggregated stiffness
+        of all tests for that HP in that month, after applying quality filters.
 
-    Outlier filters:
-      - 'only_stiff_ok=True': excludes stiffness values outside the expected
-        range.
-      - 'only_in_band=True': keeps only tests whose breakaway force falls
-        within the accepted compression or tension bands.
-      - 'only_in_band=False': keeps only out-of-band tests (outliers).
-      - 'only_in_band=None': no band filter applied (default).
+        Outlier filters:
+          - 'only_stiff_ok=True': excludes stiffness values outside the expected
+            range.
+          - 'only_in_band=True': keeps only tests whose breakaway force falls
+            within the accepted compression or tension bands.
+          - 'only_in_band=False': keeps only out-of-band tests (outliers).
+          - 'only_in_band=None': no band filter applied (default).
 
-    Shared color scaling:
-      If 'states' is a subset of TESTING_STATES_DEFAULT, vmin and vmax are
-      computed over the global range of both testing states. This allows
-      subplots for TESTINGPOSITIVE and TESTINGNEGATIVE to share the same
-      color scale for direct visual comparison.
+        Shared color scaling:
+          If 'states' is a subset of TESTING_STATES_DEFAULT, vmin and vmax are
+          computed over the global range of both testing states. This allows
+          subplots for TESTINGPOSITIVE and TESTINGNEGATIVE to share the same
+          color scale for direct visual comparison.
 
-    Args:
-        df: Features DataFrame.
-        time_col: Time column used as reference (default: 't_start_utc').
-        stiffness_col: Stiffness column to visualize (default: 'stiffness_N_per_um').
-        agg: Aggregation function per cell: 'mean' or 'median'.
-        states: List of states to include. None = all states present.
-        only_stiff_ok: If True, filter by stiff_ok=True (default: True).
-        only_in_band: Band filter: True, False or None (no filter).
-        time_min_utc: Lower time bound of the range to plot.
-        time_max_utc: Upper time bound of the range to plot.
-        cmap: Matplotlib colormap name (default: 'viridis').
-        title: Plot title. If None, generated automatically.
-        show: If True, call plt.show().
-        save_png: If True, save the plot as PNG to 'output_dir'
-                  and return the file path.
-        output_dir: Output directory when save_png=True.
+        Args:
+            df: Features DataFrame.
+            time_col: Time column used as reference (default: 't_start_utc').
+            stiffness_col: Stiffness column to visualize (default: 'stiffness_N_per_um').
+            agg: Aggregation function per cell: 'mean' or 'median'.
+            states: List of states to include. None = all states present.
+            only_stiff_ok: If True, filter by stiff_ok=True (default: True).
+            only_in_band: Band filter: True, False or None (no filter).
+            time_min_utc: Lower time bound of the range to plot.
+            time_max_utc: Upper time bound of the range to plot.
+            cmap: Matplotlib colormap name (default: 'viridis').
+            title: Plot title. If None, generated automatically.
+            show: If True, call plt.show().
+            save_png: If True, save the plot as PNG to 'output_dir'
+                      and return the file path.
+            output_dir: Output directory when save_png=True.
 
-    Returns:
-        - str with the PNG file path if save_png=True.
-        - None if show=True.
-        - Matplotlib Figure if show=False and save_png=False.
+        Returns:
+            - str with the PNG file path if save_png=True.
+            - None if show=True.
+            - Matplotlib Figure if show=False and save_png=False.
 
-    Raises:
-        ValueError: If no data remains after applying the filters.
-        ValueError: If 'agg' is not 'mean' or 'median'.
-)
+        Raises:
+            ValueError: If no data remains after applying the filters.
+            ValueError: If 'agg' is not 'mean' or 'median'.
+    )
     """
     if agg not in ("mean", "median"):
         raise ValueError(f"agg must be 'mean' or 'median', got: '{agg}'")
@@ -269,7 +266,7 @@ def plot_monthly_heatmap_stiffness(
             "Check the state, time range, and quality filter parameters."
         )
 
-    # Build pivot table 
+    # Build pivot table
     pivot = build_pivot(d, stiffness_col, agg)
     mat = pivot.to_numpy()
 
