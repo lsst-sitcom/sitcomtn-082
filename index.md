@@ -791,20 +791,17 @@ Therefore, in this section, we analyze the historical trends of the hardpoint br
 
 In order to view graphically the above we plot a dashboard to compare the data obtain for each day with completed test. 
 
-:::{figure} #
-:name: dashboard-hp1
-
-```{raw} html 
-<iframe 
-  src="_static/dashboard_hardpoints.html" 
-  width="100%"height="750px" 
-  frameborder="0" 
-  style="border:1px solid #E0E0E0; border-radius:6px;"> 
- </iframe> 
-```
-
-(Top) Interactive dashboard of test days. (Bottom) Interactive dashboard of hardpoint stiffness trends since 2023.
-:::
+<div class="figure" id="dashboard-hardpoints" style="margin-bottom: 25px;">
+  <iframe 
+    src="_static/dashboard_hardpoints.html" 
+    width="100%" height="750px" 
+    frameborder="0" 
+    style="border:1px solid #E0E0E0; border-radius:6px;">
+  </iframe>
+  <p style="text-align: center; font-style: italic; margin-top: 10px;">
+    (Top) Interactive dashboard of test days. (Bottom) Interactive dashboard of hardpoint stiffness trends since 2023.
+  </p>
+</div>
 
 In the dashboard, the top plot shows the days with completed tests up to the present day. The y-axis represents the number of tests performed on each day. From this, we observe that in may 2023 had the highest number of tests conducted in a single day.
 
@@ -812,22 +809,19 @@ On the other hand, the bottom plot shows how the daily mean stiffness evolves ov
 
 The following dashboard clearly illustrates the dependence of stiffness on the elevation angle for each HP. For this analysis, we considered only physical stiffness values. To apply the normal fit, only angle ranges that met the minimum sample size requirement (n≥10) were considered. Consequently, angles such as 45°–50° for HP2 (testing positive state), which has only 3 data points (n=3), were excluded as they do not provide enough information to obtain statistically significant results.
 
-:::{figure} #
-:name: dashboard-hp2
+<div class="figure" id="dashboard-elevation" style="margin-bottom: 25px;">
+  <iframe 
+    src="_static/dashboard_elevation.html" 
+    width="100%" height="750px" 
+    frameborder="0" 
+    style="border:1px solid #E0E0E0; border-radius:6px;">
+  </iframe>
+  <p style="text-align: center; font-style: italic; margin-top: 10px;">
+    Interactive dashboard illustrating how stiffness distribution varies in relation to angle range, categorized by state and hardpoint (HP).
+  </p>
+</div>
 
-```{raw} html 
-<iframe 
-  src="_static/dashboard_elevation.html" 
-  width="100%"height="750px" 
-  frameborder="0" 
-  style="border:1px solid #E0E0E0; border-radius:6px;"> 
- </iframe> 
-```
-
-Interactive dashboard illustrating how stiffness distribution varies in relation to angle range, categorized by state and hardpoint (HP). 
-:::
-
-Furthermore, for elevation angles up to 70 degrees, there are insufficient data points for each HP to calculate the median or standard deviation via normal fit, given our minimum requirement of n≥10.
+Furthermore, for elevation angles up to 70 degrees, there are insufficient data points for each HP to calculate the median or standar deviation via normal fit, given our minimum requirement of n≥10.
 
 In contrast, for angles above 70°, we observe that HP1 reaches a minimum mean stiffness of 15.02 N/µm in the 80°–85° range ($\sigma$=2.38), while HP6 reaches a maximum of 31.03 N/µm in the 85°–90° range ($\sigma$=1.78). Overall, a general trend is observed: for each hardpoint, an increase in elevation angle correlates with a decrease in stiffness values.
 
@@ -959,27 +953,28 @@ Regarding stiffness, the overall trend for both states has become more linear fo
 Stiffness vs. Time: Green and blue points represent the daily mean stiffness values for the positive (tension) and negative (compression) states, respectively. These figures clearly demonstrate the unusual behavior of HP3 and HP4, which exhibit significantly higher fluctuations compared to the other hardpoints.
 ::::
 
-Finally, if standard deviation is calculated, we can see, that HP3 and HP4 have the highest values. 
+Finally, if standar deviation is calculated, we can see, that HP3 and HP4 have the highest values. 
 
 :::{figure} _static/std_by_hp_2025.png
 :alt: STD
 
-Standard deviation for each hp since 2025.
+Standar deviation for each hp since 2025.
 :::
 
-(table-std-hp)=
 
-```{eval-rst}
-.. table:: Standard deviation for each HP for state.
+
+```markdown
+(table-std-hp)=
+### Table 2: Standard deviation for each HP for state.
  
-    | HP | $\sigma$ Testing Negative | $\sigma$ Testing Positive |
-    |:--:|:-------------------------:|:-------------------------:|
-    |  1 |           2.032           |           1.677           |
-    |  2 |           1.646           |           2.445           |
-    |  3 |           4.012           |           4.093           |
-    |  4 |           3.764           |           3.673           |
-    |  5 |           0.573           |           1.321           |
-    |  6 |           2.288           |           2.024           |
+| HP | $\sigma$ Testing Negative | $\sigma$ Testing Positive |
+|:--:|:-------------------------:|:-------------------------:|
+|  1 |           2.032           |           1.677           |
+|  2 |           1.646           |           2.445           |
+|  3 |           4.012           |           4.093           |
+|  4 |           3.764           |           3.673           |
+|  5 |           0.573           |           1.321           |
+|  6 |           2.288           |           2.024           |
 
 ```
 
