@@ -799,7 +799,7 @@ In order to view graphically the above we plot a dashboard to compare the data o
     style="border:1px solid #E0E0E0; border-radius:6px;">
   </iframe>
   <p style="text-align: center; font-style: italic; margin-top: 10px;">
-    (Top) Interactive dashboard of test days. (Bottom) Interactive dashboard of hardpoint stiffness trends since 2023.
+    Dashboard 1. (Top) Interactive dashboard of test days. (Bottom) Interactive dashboard of hardpoint stiffness trends since 2023.
   </p>
 </div>
 
@@ -817,7 +817,7 @@ The following dashboard clearly illustrates the dependence of stiffness on the e
     style="border:1px solid #E0E0E0; border-radius:6px;">
   </iframe>
   <p style="text-align: center; font-style: italic; margin-top: 10px;">
-    Interactive dashboard illustrating how stiffness distribution varies in relation to angle range, categorized by state and hardpoint (HP).
+    Dashboard 2. Interactive dashboard illustrating how stiffness distribution varies in relation to angle range, categorized by state and hardpoint (HP).
   </p>
 </div>
 
@@ -963,18 +963,27 @@ Standar deviation for each hp since 2025.
 
 
 
-```markdown
 (table-std-hp)=
-### Table 2: Standard deviation for each HP for state.
+
+```{eval-rst}
+.. table:: Standar deviation for each HP for state.
  
-| HP | $\sigma$ Testing Negative | $\sigma$ Testing Positive |
-|:--:|:-------------------------:|:-------------------------:|
-|  1 |           2.032           |           1.677           |
-|  2 |           1.646           |           2.445           |
-|  3 |           4.012           |           4.093           |
-|  4 |           3.764           |           3.673           |
-|  5 |           0.573           |           1.321           |
-|  6 |           2.288           |           2.024           |
+    +------+----------------------+----------------------+
+    |  HP  |  𝜎 Testing Negative  |  𝜎 Testing Positive  |
+    +======+======================+======================+
+    |  1   |          2.032       |        1.677         |
+    +------+----------------------+----------------------+
+    |  2   |          1.646       |        2.445         |
+    +------+----------------------+----------------------+
+    |  3   |          4.012       |        4.093         |
+    +------+----------------------+----------------------+
+    |  4   |          3.764       |        3.673         |
+    +------+----------------------+----------------------+
+    |  5   |          0.573       |        1.321         |
+    +------+----------------------+----------------------+
+    |  6   |          2.288       |        2.024         |
+    +------+----------------------+----------------------+
+
 
 ```
 
