@@ -97,27 +97,27 @@ Measured forces on all hardpoints look working properly because breakaway happen
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-31/HP1_90_30/m1m3004_hp1_timeline_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/force_time_HP1_2023-05-31_El90.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-31/HP2_90_30/m1m3004_hp2_timeline_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/force_time_HP2_2023-05-31_El90.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-31/HP3_90_30/m1m3004_hp3_timeline_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/force_time_HP3_2023-05-31_El90.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-31/HP4_90_30/m1m3004_hp4_timeline_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/force_time_HP4_2023-05-31_El90.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-31/HP5_90_30/m1m3004_hp5_timeline_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/force_time_HP5_2023-05-31_El90.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-31/HP6_90_30/m1m3004_hp6_timeline_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/force_time_HP6_2023-05-31_El90.00.png
 :alt: HP6
 :::
 
@@ -132,27 +132,27 @@ All stiffness slopes are shallower than specification (100N/${\mu}m$).
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-31/HP1_90_30/Force_displacement_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/stiffness_HP1_2023-05-31_El90.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-31/HP2_90_30/Force_displacement_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/stiffness_HP2_2023-05-31_El90.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-31/HP3_90_30/Force_displacement_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/stiffness_HP3_2023-05-31_El90.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-31/HP4_90_30/Force_displacement_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/stiffness_HP4_2023-05-31_El90.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-31/HP5_90_30/Force_displacement_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/stiffness_HP5_2023-05-31_El90.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-31/HP6_90_30/Force_displacement_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/stiffness_HP6_2023-05-31_El90.00.png
 :alt: HP6
 :::
 
@@ -172,27 +172,27 @@ $$ (error_function)
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-31/HP1_90_30/Force_displacement_fitting_residual_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/residual_HP1_2023-05-31_El90.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-31/HP2_90_30/Force_displacement_fitting_residual_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/residual_HP2_2023-05-31_El90.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-31/HP3_90_30/Force_displacement_fitting_residual_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/residual_HP3_2023-05-31_El90.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-31/HP4_90_30/Force_displacement_fitting_residual_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/residual_HP4_2023-05-31_El90.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-31/HP5_90_30/Force_displacement_fitting_residual_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/residual_HP5_2023-05-31_El90.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-31/HP6_90_30/Force_displacement_fitting_residual_El_90.png
+:::{image} /_static/may_june_2023/2023-05-31/session_03/residual_HP6_2023-05-31_El90.00.png
 :alt: HP6
 :::
 
@@ -214,27 +214,27 @@ This is because depending on the position of each hardpoint.
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-30/HP1_0_30/m1m3004_hp1_timeline_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/force_time_HP1_2023-05-30_El-0.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-30/HP2_0_30/m1m3004_hp2_timeline_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/force_time_HP2_2023-05-30_El-0.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-30/HP3_0_30/m1m3004_hp3_timeline_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/force_time_HP3_2023-05-30_El0.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-30/HP4_0_30/m1m3004_hp4_timeline_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/force_time_HP4_2023-05-30_El-0.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-30/HP5_0_30/m1m3004_hp5_timeline_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/force_time_HP5_2023-05-30_El-0.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-30/HP6_0_30/m1m3004_hp6_timeline_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/force_time_HP6_2023-05-30_El-0.00.png
 :alt: HP6
 :::
 
@@ -247,27 +247,27 @@ The stiffness of each curves are fitted from $\Delta$displacement = 0 ${\mu}m$ (
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-30/HP1_0_30/Force_displacement_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/stiffness_HP1_2023-05-30_El-0.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-30/HP2_0_30/Force_displacement_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/stiffness_HP2_2023-05-30_El-0.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-30/HP3_0_30/Force_displacement_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/stiffness_HP3_2023-05-30_El0.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-30/HP4_0_30/Force_displacement_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/stiffness_HP4_2023-05-30_El-0.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-30/HP5_0_30/Force_displacement_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/stiffness_HP5_2023-05-30_El-0.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-30/HP6_0_30/Force_displacement_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/stiffness_HP6_2023-05-30_El-0.00.png
 :alt: HP6
 :::
 
@@ -278,27 +278,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-30/HP1_0_30/Force_displacement_fitting_residual_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/residual_HP1_2023-05-30_El-0.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-30/HP2_0_30/Force_displacement_fitting_residual_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/residual_HP2_2023-05-30_El-0.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-30/HP3_0_30/Force_displacement_fitting_residual_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/residual_HP3_2023-05-30_El0.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-30/HP4_0_30/Force_displacement_fitting_residual_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/residual_HP4_2023-05-30_El-0.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-30/HP5_0_30/Force_displacement_fitting_residual_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/residual_HP5_2023-05-30_El-0.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-30/HP6_0_30/Force_displacement_fitting_residual_El_0.png
+:::{image} /_static/may_june_2023/2023-05-30/session_02/residual_HP6_2023-05-30_El-0.00.png
 :alt: HP6
 :::
 
@@ -311,27 +311,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-26/HP1/m1m3004_hp1_timeline_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/force_time_HP1_2023-05-26_El40.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-26/HP2/m1m3004_hp2_timeline_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/force_time_HP2_2023-05-26_El40.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-26/HP3/m1m3004_hp3_timeline_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/force_time_HP3_2023-05-26_El40.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-26/HP4/m1m3004_hp4_timeline_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/force_time_HP4_2023-05-26_El40.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-26/HP5/m1m3004_hp5_timeline_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/force_time_HP5_2023-05-26_El40.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-26/HP6/m1m3004_hp6_timeline_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/force_time_HP6_2023-05-26_El40.00.png
 :alt: HP6
 :::
 
@@ -343,27 +343,27 @@ Transition of the measured forces on each hardpoint when the TMA is at el=40deg.
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-26/HP1/Force_displacement_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/stiffness_HP1_2023-05-26_El40.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-26/HP2/Force_displacement_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/stiffness_HP2_2023-05-26_El40.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-26/HP3/Force_displacement_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/stiffness_HP3_2023-05-26_El40.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-26/HP4/Force_displacement_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/stiffness_HP4_2023-05-26_El40.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-26/HP5/Force_displacement_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/stiffness_HP5_2023-05-26_El40.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-26/HP6/Force_displacement_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/stiffness_HP6_2023-05-26_El40.00.png
 :alt: HP6
 :::
 
@@ -374,27 +374,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-26/HP1/Force_displacement_fitting_residual_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/residual_HP1_2023-05-26_El40.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-26/HP2/Force_displacement_fitting_residual_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/residual_HP2_2023-05-26_El40.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-26/HP3/Force_displacement_fitting_residual_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/residual_HP3_2023-05-26_El40.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-26/HP4/Force_displacement_fitting_residual_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/residual_HP4_2023-05-26_El40.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-26/HP5/Force_displacement_fitting_residual_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/residual_HP5_2023-05-26_El40.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-26/HP6/Force_displacement_fitting_residual_El_40.png
+:::{image} /_static/may_june_2023/2023-05-26/session_01/residual_HP6_2023-05-26_El40.00.png
 :alt: HP6
 :::
 
@@ -407,27 +407,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-27/HP1/m1m3004_hp1_timeline_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/force_time_HP1_2023-05-27_El20.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-27/HP2/m1m3004_hp2_timeline_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/force_time_HP2_2023-05-27_El20.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-27/HP3/m1m3004_hp3_timeline_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/force_time_HP3_2023-05-27_El20.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-27/HP4/m1m3004_hp4_timeline_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/force_time_HP4_2023-05-27_El20.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-27/HP5/m1m3004_hp5_timeline_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/force_time_HP5_2023-05-27_El20.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-27/HP6/m1m3004_hp6_timeline_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/force_time_HP6_2023-05-27_El20.00.png
 :alt: HP6
 :::
 
@@ -438,27 +438,27 @@ Transition of the measured forces on each hardpoint when the TMA is at el=20deg.
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-27/HP1/Force_displacement_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/stiffness_HP1_2023-05-27_El20.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-27/HP2/Force_displacement_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/stiffness_HP2_2023-05-27_El20.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-27/HP3/Force_displacement_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/stiffness_HP3_2023-05-27_El20.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-27/HP4/Force_displacement_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/stiffness_HP4_2023-05-27_El20.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-27/HP5/Force_displacement_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/stiffness_HP5_2023-05-27_El20.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-27/HP6/Force_displacement_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/stiffness_HP6_2023-05-27_El20.00.png
 :alt: HP6
 :::
 
@@ -469,27 +469,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-27/HP1/Force_displacement_fitting_residual_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/residual_HP1_2023-05-27_El20.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-27/HP2/Force_displacement_fitting_residual_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/residual_HP2_2023-05-27_El20.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-27/HP3/Force_displacement_fitting_residual_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/residual_HP3_2023-05-27_El20.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-27/HP4/Force_displacement_fitting_residual_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/residual_HP4_2023-05-27_El20.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-27/HP5/Force_displacement_fitting_residual_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/residual_HP5_2023-05-27_El20.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-27/HP6/Force_displacement_fitting_residual_El_20.png
+:::{image} /_static/may_june_2023/2023-05-27/session_02/residual_HP6_2023-05-27_El20.00.png
 :alt: HP6
 :::
 
@@ -502,27 +502,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-31/HP1_10_30/m1m3004_hp1_timeline_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/force_time_HP1_2023-05-31_El10.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-31/HP2_10_30/m1m3004_hp2_timeline_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/force_time_HP2_2023-05-31_El10.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-31/HP3_10_30/m1m3004_hp3_timeline_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/force_time_HP3_2023-05-31_El10.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-31/HP4_10_30/m1m3004_hp4_timeline_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/force_time_HP4_2023-05-31_El10.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-31/HP5_10_30/m1m3004_hp5_timeline_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/force_time_HP5_2023-05-31_El10.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-31/HP6_10_30/m1m3004_hp6_timeline_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/force_time_HP6_2023-05-31_El10.00.png
 :alt: HP6
 :::
 
@@ -533,27 +533,27 @@ Transition of the measured forces on each hardpoint when the TMA is at el=10deg.
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-31/HP1_10_30/Force_displacement_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/stiffness_HP1_2023-05-31_El10.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-31/HP2_10_30/Force_displacement_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/stiffness_HP2_2023-05-31_El10.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-31/HP3_10_30/Force_displacement_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/stiffness_HP3_2023-05-31_El10.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-31/HP4_10_30/Force_displacement_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/stiffness_HP4_2023-05-31_El10.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-31/HP5_10_30/Force_displacement_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/stiffness_HP5_2023-05-31_El10.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-31/HP6_10_30/Force_displacement_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/stiffness_HP6_2023-05-31_El10.00.png
 :alt: HP6
 :::
 
@@ -564,27 +564,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-31/HP1_10_30/Force_displacement_fitting_residual_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/residual_HP1_2023-05-31_El10.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-31/HP2_10_30/Force_displacement_fitting_residual_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/residual_HP2_2023-05-31_El10.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-31/HP3_10_30/Force_displacement_fitting_residual_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/residual_HP3_2023-05-31_El10.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-31/HP4_10_30/Force_displacement_fitting_residual_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/residual_HP4_2023-05-31_El10.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-31/HP5_10_30/Force_displacement_fitting_residual_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/residual_HP5_2023-05-31_El10.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-31/HP6_10_30/Force_displacement_fitting_residual_El_10.png
+:::{image} /_static/may_june_2023/2023-05-31/session_02/residual_HP6_2023-05-31_El10.00.png
 :alt: HP6
 :::
 
@@ -597,54 +597,54 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-31/HP1_5_30/m1m3004_hp1_timeline_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/force_time_HP1_2023-05-31_El5.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-31/HP2_5_30/m1m3004_hp2_timeline_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/force_time_HP2_2023-05-31_El5.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-31/HP3_5_30/m1m3004_hp3_timeline_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/force_time_HP3_2023-05-31_El5.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-31/HP4_5_30/m1m3004_hp4_timeline_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/force_time_HP4_2023-05-31_El5.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-31/HP5_5_30/m1m3004_hp5_timeline_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/force_time_HP5_2023-05-31_El5.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-31/HP6_5_30/m1m3004_hp6_timeline_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/force_time_HP6_2023-05-31_El5.00.png
 :alt: HP6
 :::
 
 Transition of the measured forces on each hardpoint when the TMA is at el=5deg.
 ::::
 
-:::{image} /_static/2023-05-31/HP1_5_30/Force_displacement_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/stiffness_HP1_2023-05-31_El5.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-31/HP2_5_30/Force_displacement_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/stiffness_HP2_2023-05-31_El5.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-31/HP3_5_30/Force_displacement_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/stiffness_HP3_2023-05-31_El5.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-31/HP4_5_30/Force_displacement_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/stiffness_HP4_2023-05-31_El5.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-31/HP5_5_30/Force_displacement_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/stiffness_HP5_2023-05-31_El5.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-31/HP6_5_30/Force_displacement_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/stiffness_HP6_2023-05-31_El5.00.png
 :alt: HP6
 :::
 
@@ -655,27 +655,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-31/HP1_5_30/Force_displacement_fitting_residual_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/residual_HP1_2023-05-31_El5.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-31/HP2_5_30/Force_displacement_fitting_residual_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/residual_HP2_2023-05-31_El5.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-31/HP3_5_30/Force_displacement_fitting_residual_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/residual_HP3_2023-05-31_El5.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-31/HP4_5_30/Force_displacement_fitting_residual_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/residual_HP4_2023-05-31_El5.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-31/HP5_5_30/Force_displacement_fitting_residual_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/residual_HP5_2023-05-31_El5.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-31/HP6_5_30/Force_displacement_fitting_residual_El_5.png
+:::{image} /_static/may_june_2023/2023-05-31/session_01/residual_HP6_2023-05-31_El5.00.png
 :alt: HP6
 :::
 
@@ -688,27 +688,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-30/HP1_1_30/m1m3004_hp1_timeline_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/force_time_HP1_2023-05-30_El1.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-30/HP2_1_30/m1m3004_hp2_timeline_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/force_time_HP2_2023-05-30_El1.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-30/HP3_1_30/m1m3004_hp3_timeline_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/force_time_HP3_2023-05-30_El1.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-30/HP4_1_30/m1m3004_hp4_timeline_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/force_time_HP4_2023-05-30_El1.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-30/HP5_1_30/m1m3004_hp5_timeline_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/force_time_HP5_2023-05-30_El1.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-30/HP6_1_30/m1m3004_hp6_timeline_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/force_time_HP6_2023-05-30_El1.00.png
 :alt: HP6
 :::
 
@@ -719,27 +719,27 @@ Transition of the measured forces on each hardpoint when the TMA is at el=1deg.
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-30/HP1_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/stiffness_HP1_2023-05-30_El1.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-30/HP2_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/stiffness_HP2_2023-05-30_El1.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-30/HP3_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/stiffness_HP3_2023-05-30_El1.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-30/HP4_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/stiffness_HP4_2023-05-30_El1.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-30/HP5_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/stiffness_HP5_2023-05-30_El1.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-30/HP6_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/stiffness_HP6_2023-05-30_El1.00.png
 :alt: HP6
 :::
 
@@ -750,27 +750,27 @@ $\Delta$Displacement versus measured forces for each phase during the hardpoint 
 :layout-sm: 1
 :gap: 8px
 
-:::{image} /_static/2023-05-30/HP1_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/residual_HP1_2023-05-30_El1.00.png
 :alt: HP1
 :::
 
-:::{image} /_static/2023-05-30/HP2_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/residual_HP2_2023-05-30_El1.00.png
 :alt: HP2
 :::
 
-:::{image} /_static/2023-05-30/HP3_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/residual_HP3_2023-05-30_El1.00.png
 :alt: HP3
 :::
 
-:::{image} /_static/2023-05-30/HP4_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/residual_HP4_2023-05-30_El1.00.png
 :alt: HP4
 :::
 
-:::{image} /_static/2023-05-30/HP5_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/residual_HP5_2023-05-30_El1.00.png
 :alt: HP5
 :::
 
-:::{image} /_static/2023-05-30/HP6_1_30/Force_displacement_fitting_residual_El_1.png
+:::{image} /_static/may_june_2023/2023-05-30/session_03/residual_HP6_2023-05-30_El1.00.png
 :alt: HP6
 :::
 
